@@ -29,8 +29,13 @@ unsigned int njson_tofile(NJson* this , char* filename){
 	FILE *out;
 	char* data = njson_tostring(this);
 	out = fopen( filename, "w");
+
 	fputs(data , out);
-	fclose(out);
+	if	(fclose(out) == EOF){
+		return 0;
+	}
+
+	return 1;
 
 }
 
@@ -40,10 +45,12 @@ void njson_agregar(NJson* njson, const char* clave, void* value){
 
 int njson_existe_clave(NJson* njson, const char* clave){
 
+	return 0;
 }
 
 Valor* njson_obtener_clave(NJson* njson, const char* clave){
-
+	Valor* valor;
+	return valor;
 }
 
 void njson_eliminar_clave(NJson* njson, const char* clave){
