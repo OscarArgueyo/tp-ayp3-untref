@@ -60,11 +60,13 @@ typedef struct _NJson{
  */
 
 NJson* njson_init();
+
 /**
  * Entrega 1
  */
+char * njson_tostring(NJson* this){
 void njson_print(NJson* this);
-unsigned int njson_tofile(NJson* this);
+unsigned int njson_tofile(NJson* this , char* filename);
 /**
  * Fin Entrega 1
  */
