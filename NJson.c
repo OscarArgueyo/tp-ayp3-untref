@@ -8,6 +8,10 @@
 #include "NJson.h";
 
 
+NJson* njson_init(NJson* this){
+	return this;
+}
+
 char * njson_tostring(NJson* this){
 	/**
 	 * Para esta entrega 1 lo vamos a hacer aca

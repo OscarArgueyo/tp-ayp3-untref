@@ -9,20 +9,11 @@ typedef struct _Clave{
 	char* clave;
 } Clave;
 
-typedef union _Valor
-{
-    Boolean bool;
-    NJson njson;
-    Entero entero;
-    String string;
-    Array array;
-} Valor;
-
 typedef struct _Boolean{
 	/**
 	 * Se puede hacer de mil formas posibles
 	 */
-}Boolean;
+} Boolean;
 
 typedef struct _Entero{
 	int valor;
@@ -41,7 +32,19 @@ typedef struct _Array{
 }Array;
 
 
-typedef struct _NJson{
+typedef struct _NJson NJson;
+
+typedef union _Valor
+{
+    Boolean bool;
+    struct _NJson* njson;
+    Entero entero;
+    String string;
+    Array array;
+} Valor;
+
+
+struct NJson{
 	Clave* clave;
 	Valor* valor;
 	NJson* sig;
@@ -52,14 +55,15 @@ typedef struct _NJson{
 	 * Se puede manejar como un diccionario de python.
 	 */
 
-} NJson;
+};
+
 
 
 /**
  * Inicio Primitivas del NJson
  */
 
-NJson* njson_init();
+NJson* njson_init(NJson* this);
 
 /**
  * Entrega 1
