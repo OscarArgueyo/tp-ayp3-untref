@@ -7,11 +7,30 @@
 #include <string.h>
 #include "NJson.h";
 
+
+char * njson_tostring(NJson* this){
+	/**
+	 * Para esta entrega 1 lo vamos a hacer aca
+	 * Este sera el metodo mas complicado de todos.
+	 *
+	 */
+	char* data = 'ACA VA EL JSON';
+	return data;
+}
+
 void njson_print(NJson* this){
+
+	puts(njson_tostring(this));
 
 }
 
-void njson_tofile(NJson* this){
+unsigned int njson_tofile(NJson* this , char* filename){
+
+	FILE *out;
+	char* data = njson_tostring(this);
+	out = fopen( filename, "w");
+	fputs(data , out);
+	fclose(out);
 
 }
 

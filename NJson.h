@@ -64,7 +64,7 @@ NJson* njson_init();
  * Entrega 1
  */
 void njson_print(NJson* this);
-void njson_tofile(NJson* this);
+unsigned int njson_tofile(NJson* this);
 /**
  * Fin Entrega 1
  */
