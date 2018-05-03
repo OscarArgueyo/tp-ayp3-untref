@@ -31,9 +31,6 @@ typedef struct _Array{
 	 */
 }Array;
 
-
-typedef struct _NJson NJson;
-
 typedef union _Valor
 {
     Boolean bool;
@@ -44,10 +41,10 @@ typedef union _Valor
 } Valor;
 
 
-struct NJson{
+typedef struct _NJson{
 	Clave* clave;
-	Valor* valor;
-	NJson* sig;
+	union _Valor* valor;
+	struct _NJson* sig;
 
 	/**
 	 * El NJson en el que se inicializa pero al mismo
@@ -55,7 +52,7 @@ struct NJson{
 	 * Se puede manejar como un diccionario de python.
 	 */
 
-};
+}NJson;
 
 
 
@@ -91,6 +88,7 @@ void njson_liberar(NJson* njson);
  */
 
 // Documentar todas las primitivas
+
 #endif // __NJSON_H__
 
 
