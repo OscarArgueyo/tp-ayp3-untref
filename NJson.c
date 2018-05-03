@@ -32,7 +32,7 @@ unsigned int njson_tofile(NJson* this , char* filename){
 
 	FILE *out;
 	char* data = njson_tostring(this);
-	out = fopen( filename, "w");
+	out = fopen( (char*)filename, "w");
 
 	fputs(data , out);
 	if	(fclose(out) == EOF){

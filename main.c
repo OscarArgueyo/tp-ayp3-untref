@@ -23,7 +23,7 @@ int main(int argc, char* argv[]) {
 
 			if (strcmp(argv[1], "-f") == 0 && strlen(argv[2]) <= NAME_MAX){
 				*nombre_archivo = argv[2];
-				puts("aquie");
+				njson_tofile(pnjson , *nombre_archivo);
 
 			}//Validar -f
 
