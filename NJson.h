@@ -1,83 +1,60 @@
-/*
- * nJson.h
- */
 
 #ifndef __NJSON_H__
 #define __NJSON_H__
 
-typedef struct _Clave{
-	char* clave;
-} Clave;
+typedef struct _nJson{
+	char* nombre;
+	struct _dato* dato;
+} NJson;
 
-typedef struct _Boolean{
-	/**
-	 * Se puede hacer de mil formas posibles
-	 */
-} Boolean;
-
-typedef struct _Entero{
-	int valor;
-}Entero;
-
-typedef struct _String{
-	char* valor;
-}String;
-
-typedef struct _Array{
-
+typedef struct _dato{
+	char* nombre;
 	void* valor;
-	/**
-	 * Este es el complicado
-	 */
-}Array;
+	char array;
+	unsigned longArray;
+	struct _dato* sig;
+	void* (*func)(char*,void*);
+} Dato;
 
-typedef union _Valor
-{
-    Boolean bool;
-    struct _NJson* njson;
-    Entero entero;
-    String string;
-    Array array;
-} Valor;
-
-
-typedef struct _NJson{
-	Clave* clave;
-	union _Valor* valor;
-	struct _NJson* sig;
-
-	/**
-	 * El NJson en el que se inicializa pero al mismo
-	 * tiempo es un valor posible para las claves del json
-	 * Se puede manejar como un diccionario de python.
-	 */
-
-}NJson;
-
-
-
-/**
- * Inicio Primitivas del NJson
+/*
+ * this: NJson a incializar.
+ * nombre: nombre del NJson.
+ * nombreDato: nombre del primer dato.
+ * valor: valor del primer dato.
+ * sizeDato: tamaño del tipo de dato.
+ * array: si es o no un array.
+ * longArray: longitud del array.
+ * func: puntero a la funcion que escribe el dato.
  */
+NJson* njson_init(NJson* this, char* nombre, char* nombreDato, void* valor,
+		unsigned sizeDato, char array, unsigned longArray, void* (*func)(char*,void*));
 
-NJson* njson_init(NJson* this);
+void njson_release(NJson* this);
+void dato_release(Dato* this);
 
-/**
- * Entrega 1
- */
+Dato* agregarDato(Dato* this, char* nombre, void* valor, unsigned sizeDato,
+		char array, unsigned longArray, void* (*func)(char*,void*));
+
+char* escribir(char* string, NJson* this);
+void escribirEntero(char* string, void* valor);
+void escribirUnsigned(char* string, void* valor);
+void escribirDouble(char* string, void* valor);
+void escribirFloat(char* string, void* valor);
+void escribirString(char* string, void* valor);
+void escribirBoolean(char* string, void* valor);
+
+/*
 char * njson_tostring(NJson* this);
 void njson_print(NJson* this);
 unsigned int njson_tofile(NJson* this , char* filename);
-/**
- * Fin Entrega 1
- */
+
 
 void njson_agregar(NJson* njson, const char* clave, void* value);
 int njson_existe_clave(NJson* njson, const char* clave);
 Valor* njson_obtener_clave(NJson* njson, const char* clave);
 void njson_eliminar_clave(NJson* njson, const char* clave);
 void njson_liberar(NJson* njson);
-
+*/
 
 /**
  * Fin Primitivas del NJson
