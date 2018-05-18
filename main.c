@@ -9,23 +9,26 @@ int main(int argc, char* argv[]) {
 	NJson njson;
 	char* escritura = 0x0;
 
-	unsigned valor1 = 55;
-	int valor2 = 8;
-	double valor3 = 11.27;
-	float valor4 = 15.12;
-	char valor5 = 1;
-	char* valor6 = "714f129684fe";
+	unsigned valorUnsigned = 55;
+	int valorInteger = 8;
+	double valorDouble = 11.27;
+	float valorFlotante = 15.12;
+	char valorBoleano = 1;
+	char* valorString = "714f129684fe";
 
-	njson_init(&njson,"PruebaJson","numero1",&valor1,sizeof(unsigned),0,1,escribirUnsigned);
-	agregarDato(njson.dato,"numero2",&valor2,sizeof(int),0,1,escribirEntero);
-	//agregarDato(njson.dato,"numero3",&valor3,sizeof(double),0,1,escribirDouble);
-	//agregarDato(njson.dato,"numero4",&valor4,sizeof(float),0,1,escribirFloat);
-	agregarDato(njson.dato,"boolean",&valor5,sizeof(char),0,1,escribirBoolean);
-	//agregarDato(njson.dato,"texto",valor6,strlen(valor6),0,1,escribirString);
+	njson_init(&njson,"PruebaJson","numero1 unsigned",&valorUnsigned,sizeof(unsigned),0,1,escribirUnsigned);
+	agregarDato(njson.dato,"numero2 integer",&valorInteger,sizeof(int),0,1,escribirEntero);
+	agregarDato(njson.dato,"numero3 double",&valorDouble,sizeof(double),0,1,escribirDouble);
+	agregarDato(njson.dato,"numero4 float",&valorFlotante,sizeof(float),0,1,escribirFloat);
+	agregarDato(njson.dato,"boolean",&valorBoleano,sizeof(char),0,1,escribirBoolean);
+	agregarDato(njson.dato,"texto",valorString,strlen(valorString)+1,0,1,escribirString);
+	agregarDato(njson.dato,"numero3 otra vez",&valorDouble,sizeof(double),0,1,escribirDouble);
+	agregarDato(njson.dato,"boolean otra vez",&valorBoleano,sizeof(char),0,1,escribirBoolean);
+	agregarDato(njson.dato,"numero4 otra vez",&valorFlotante,sizeof(float),0,1,escribirFloat);
 
-	escritura = escribir(escritura,&njson);
+	escribir(escritura,&njson);
 
-	printf("%s",escritura);
+	//printf("%s",escritura);
 
 	//njson_release(&njson);
 	/*

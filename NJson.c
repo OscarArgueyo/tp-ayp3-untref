@@ -59,64 +59,83 @@ Dato* agregarDato(Dato* this, char* nombre, void* valor, unsigned sizeDato, char
 
 char* escribir(char* string, NJson* this){
 
-	string = malloc(2);
-	strcat(string,"{\n");
+	//string = malloc(2);
+	//strcat(string,"{\n");
+	printf("{\n");
 	Dato* datoEscribir = this->dato;
 	do{
-		string = realloc(string, strlen(string)+strlen(datoEscribir->nombre)+4);
-		strcat(string,"\"");
-		strcat(string,datoEscribir->nombre);
-		strcat(string,"\":");
+		//string = realloc(string, strlen(string)+strlen(datoEscribir->nombre)+4);
+		//strcat(string,"\"");
+		//strcat(string,datoEscribir->nombre);
+		//strcat(string,"\":");
+		printf("\"");
+		printf("%s",datoEscribir->nombre);
+		printf("\": ");
 		datoEscribir->func(string,datoEscribir->valor);
 	}while(datoEscribir = datoEscribir->sig);
 
-	string = realloc(string,strlen(string)+2);
-	strcat(string,"}\n");
+	//string = realloc(string,strlen(string)+2);
+	//strcat(string,"}\n");
+
+	printf("}\n");
 
 	return string;
 
 }
 
 void escribirEntero(char* string, void* valor){
-	string = realloc(string,strlen(string)+10);
-	sprintf(string,"%s %d",string,*(int*)valor);
-	strcat(string,",\n");
+	//string = realloc(string,strlen(string)+10);
+	//sprintf(string,"%s %d",string,*(int*)valor);
+	//strcat(string,",\n");
+	printf("%d",*(int*)valor);
+	printf(",\n");
 }
 
 void escribirUnsigned(char* string, void* valor){
-	string = realloc(string,strlen(string)+10);
-	sprintf(string,"%s %u",string,*(unsigned*)valor);
-	strcat(string,",\n");
+	//string = realloc(string,strlen(string)+10);
+	//sprintf(string,"%s %u",string,*(unsigned*)valor);
+	//strcat(string,",\n");
+	printf("%u",*(unsigned*)valor);
+	printf(",\n");
 }
 
 void escribirDouble(char* string, void* valor){
-	string = realloc(string,strlen(string)+10);
-	sprintf(string,"%s %lf",string,*(double*)valor);
-	strcat(string,",\n");
+	//string = realloc(string,strlen(string)+10);
+	//sprintf(string,"%s %lf",string,*(double*)valor);
+	//strcat(string,",\n");
+	printf("%lf",*(double*)valor);
+	printf(",\n");
 }
 
 void escribirFloat(char* string, void* valor){
-	string = realloc(string,strlen(string)+10);
-	sprintf(string,"%s %f",string,*(float*)valor);
-	strcat(string,",\n");
+	//string = realloc(string,strlen(string)+10);
+	//sprintf(string,"%s %f",string,*(float*)valor);
+	//strcat(string,",\n");
+	printf("%f",*(float*)valor);
+	printf(",\n");
 }
 
 void escribirString(char* string, void* valor){
-	char* texto = (char*)valor;
-	string = realloc(string,strlen(string)+strlen(texto)+3);
-	sprintf(string,"%s \"%s\"",string,texto);
-	strcat(string,",\n");
+	//char* texto = (char*)valor;
+	//string = realloc(string,strlen(string)+strlen(texto)+3);
+	//sprintf(string,"%s \"%s\"",string,texto);
+	//strcat(string,",\n");
+	printf("\"%s\"",(char*)valor);
+	printf(",\n");
 }
 
 void escribirBoolean(char* string, void* valor){
 	char bool = *(char*)valor;
-	string = realloc(string,strlen(string)+6);
+	//string = realloc(string,strlen(string)+6);
 	if(bool == '0'){
-		sprintf(string,"%s false",string);
+		//sprintf(string,"%s false",string);
+		printf("false");
 	}else{
-		sprintf(string,"%s true",string);
+		//sprintf(string,"%s true",string);
+		printf("true");
 	}
-	strcat(string,",\n");
+	//strcat(string,",\n");
+	printf(",\n");
 }
 
 
