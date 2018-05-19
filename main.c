@@ -11,7 +11,7 @@ int main(int argc, char* argv[]) {
 
 	unsigned valorUnsigned = 55;
 	int valorInteger = 8;
-	double valorDouble = 11.27;
+	double valorDouble = 11.28;
 	float valorFlotante = 15.12;
 	char valorBoleano = 1;
 	char* valorString = "714f129684fe";
@@ -30,7 +30,7 @@ int main(int argc, char* argv[]) {
 
 	//printf("%s",escritura);
 
-	//njson_release(&njson);
+	njson_release(&njson);
 	/*
 	char* nombre_archivo[NAME_MAX];
 

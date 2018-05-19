@@ -63,7 +63,7 @@ char* escribir(char* string, NJson* this){
 	//strcat(string,"{\n");
 	printf("{\n");
 	Dato* datoEscribir = this->dato;
-	do{
+	while(datoEscribir){
 		//string = realloc(string, strlen(string)+strlen(datoEscribir->nombre)+4);
 		//strcat(string,"\"");
 		//strcat(string,datoEscribir->nombre);
@@ -72,8 +72,8 @@ char* escribir(char* string, NJson* this){
 		printf("%s",datoEscribir->nombre);
 		printf("\": ");
 		datoEscribir->func(string,datoEscribir->valor);
-	}while(datoEscribir = datoEscribir->sig);
-
+		datoEscribir = datoEscribir->sig;
+	}
 	//string = realloc(string,strlen(string)+2);
 	//strcat(string,"}\n");
 
