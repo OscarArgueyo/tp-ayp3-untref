@@ -21,7 +21,11 @@ void njson_release(NJson* this){
 		this->nombre = 0x0;
 		dato_release(this->dato);
 		this->dato = 0x0;
-		free(this);
+		//printf("Y aca?");
+		free(this->dato);
+		//free(this);
+		memset(this , 0x0, sizeof(NJson));
+		this = 0x0;
 	}
 
 }
@@ -32,9 +36,14 @@ void dato_release(Dato* this){
 		this->nombre = 0x0;
 		free(this->valor);
 		this->valor = 0x0;
-		free(this);
-		dato_release(this->sig);
+		if(this->sig != 0x0){
+			dato_release(this->sig);
+			//free(this->sig);
+		}
+		//printf("Llego aca\n");	
+		//free(this);
 	}
+	
 }
 
 Dato* agregarDato(Dato* this, char* nombre, void* valor, unsigned sizeDato, char array,
@@ -73,6 +82,9 @@ char* escribir(char* string, NJson* this){
 		printf("\": ");
 		datoEscribir->func(string,datoEscribir->valor);
 		datoEscribir = datoEscribir->sig;
+		if(datoEscribir != 0x0){
+			printf(",");
+		}
 	}
 	//string = realloc(string,strlen(string)+2);
 	//strcat(string,"}\n");
@@ -88,7 +100,7 @@ void escribirEntero(char* string, void* valor){
 	//sprintf(string,"%s %d",string,*(int*)valor);
 	//strcat(string,",\n");
 	printf("%d",*(int*)valor);
-	printf(",\n");
+	//printf(",\n");
 }
 
 void escribirUnsigned(char* string, void* valor){
@@ -96,7 +108,7 @@ void escribirUnsigned(char* string, void* valor){
 	//sprintf(string,"%s %u",string,*(unsigned*)valor);
 	//strcat(string,",\n");
 	printf("%u",*(unsigned*)valor);
-	printf(",\n");
+	//printf(",\n");
 }
 
 void escribirDouble(char* string, void* valor){
@@ -104,7 +116,7 @@ void escribirDouble(char* string, void* valor){
 	//sprintf(string,"%s %lf",string,*(double*)valor);
 	//strcat(string,",\n");
 	printf("%lf",*(double*)valor);
-	printf(",\n");
+	//printf(",\n");
 }
 
 void escribirFloat(char* string, void* valor){
@@ -112,7 +124,7 @@ void escribirFloat(char* string, void* valor){
 	//sprintf(string,"%s %f",string,*(float*)valor);
 	//strcat(string,",\n");
 	printf("%f",*(float*)valor);
-	printf(",\n");
+	//printf(",\n");
 }
 
 void escribirString(char* string, void* valor){
@@ -121,7 +133,7 @@ void escribirString(char* string, void* valor){
 	//sprintf(string,"%s \"%s\"",string,texto);
 	//strcat(string,",\n");
 	printf("\"%s\"",(char*)valor);
-	printf(",\n");
+	//printf(",\n");
 }
 
 void escribirBoolean(char* string, void* valor){
@@ -135,7 +147,7 @@ void escribirBoolean(char* string, void* valor){
 		printf("true");
 	}
 	//strcat(string,",\n");
-	printf(",\n");
+	//printf(",\n");
 }
 
 unsigned int njson_tofile(NJson* this , char* filename){

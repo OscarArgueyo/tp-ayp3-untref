@@ -52,6 +52,7 @@ int main(int argc, char* argv[]) {
 		}
 		njson_release(&njson);
 	}else{
+		njson_release(&njson);
 		exit(0);
 	}
 
