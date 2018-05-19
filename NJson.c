@@ -138,6 +138,26 @@ void escribirBoolean(char* string, void* valor){
 	printf(",\n");
 }
 
+unsigned int njson_tofile(NJson* this , char* filename){
+
+	FILE *out;
+
+	if((out=freopen((char*)filename, "w" ,stdout))==NULL) {
+	    printf("No pudo abrirse correctamente el archivo.\n");
+    	exit(1);
+    	return 0;
+  	}
+
+	escribir(0x0, this);
+
+	if	(fclose(out) == EOF){
+		return 0;
+	}
+
+	return 1;
+
+}
+
 
 /*
 NJson* njson_init(NJson* this){
@@ -153,21 +173,6 @@ char* njson_tostring(NJson* this){
 void njson_print(NJson* this){
 
 	puts(njson_tostring(this));
-
-}
-
-unsigned int njson_tofile(NJson* this , char* filename){
-
-	FILE *out;
-	char* data = njson_tostring(this);
-	out = fopen( (char*)filename, "w");
-
-	fputs(data , out);
-	if	(fclose(out) == EOF){
-		return 0;
-	}
-
-	return 1;
 
 }
 

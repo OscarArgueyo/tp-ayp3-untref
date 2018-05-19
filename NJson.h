@@ -42,6 +42,7 @@ void escribirDouble(char* string, void* valor);
 void escribirFloat(char* string, void* valor);
 void escribirString(char* string, void* valor);
 void escribirBoolean(char* string, void* valor);
+unsigned int njson_tofile(NJson* this , char* filename);
 
 /*
 char * njson_tostring(NJson* this);

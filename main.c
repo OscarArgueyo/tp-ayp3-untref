@@ -26,36 +26,34 @@ int main(int argc, char* argv[]) {
 	agregarDato(njson.dato,"boolean otra vez",&valorBoleano,sizeof(char),0,1,escribirBoolean);
 	agregarDato(njson.dato,"numero4 otra vez",&valorFlotante,sizeof(float),0,1,escribirFloat);
 
-	escribir(escritura,&njson);
+	//escribir(escritura,&njson);
 
 	//printf("%s",escritura);
 
-	njson_release(&njson);
-	/*
+	//njson_release(&njson);
+
 	char* nombre_archivo[NAME_MAX];
 
 	if	(argc == 3 || argc == 1){//Podemos avanzar
-
 		if(argc == 1){ //No tenemos parametros
-			njson_print(pnjson);
+			//njson_print(pnjson);
+			escribir(escritura,&njson);
 		}
-
 
 		if(argc == 3){ //Tenemos dos parametros -f y nombre archivo
 
 			if (strcmp(argv[1], "-f") == 0 && strlen(argv[2]) <= NAME_MAX){
 				*nombre_archivo = argv[2];
-				njson_tofile(pnjson , *nombre_archivo);
+				njson_tofile(&njson , *nombre_archivo);
 
 			}//Validar -f
 
 			//Validar nombre archivo y guardarlo en nombre_archivo
-
 		}
-
+		njson_release(&njson);
 	}else{
 		exit(0);
-	}*/
+	}
 
 }
 
