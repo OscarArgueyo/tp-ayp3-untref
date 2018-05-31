@@ -10,7 +10,7 @@ void main(int argc, char* argv[]) {
 	char* escritura = 0x0;
 
 	/**
-	 * Declaracion del puntero al nombre del archivo si lo necesitamos segun 
+	 * Declaracion del puntero al nombre del archivo si lo necesitamos segun
 	 * opciones de ejecucion
 	*/
 	char* nombre_archivo[NAME_MAX];
@@ -26,15 +26,19 @@ void main(int argc, char* argv[]) {
 	char valorBoleano = 1;
 	char* valorString = "714f129684fe";
 
-	njson_init(&njson,"PruebaJson","numero1 unsigned",&valorUnsigned,sizeof(unsigned),0,1,&imprimir_unsigned);
-	dato_agregar(njson.dato,"numero2 integer",&valorInteger,sizeof(int),0,1,&imprimir_entero);
-	dato_agregar(njson.dato,"numero3 double",&valorDouble,sizeof(double),0,1,&imprimir_double);
-	dato_agregar(njson.dato,"numero4 float",&valorFlotante,sizeof(float),0,1,&imprimir_float);
-	dato_agregar(njson.dato,"boolean",&valorBoleano,sizeof(char),0,1,&imprimir_boolean);
-	dato_agregar(njson.dato,"texto",valorString,strlen(valorString)+1,0,1,&imprimir_string);
-	dato_agregar(njson.dato,"numero3 otra vez",&valorDouble,sizeof(double),0,1,&imprimir_double);
-	dato_agregar(njson.dato,"boolean otra vez",&valorBoleano,sizeof(char),0,1,&imprimir_boolean);
-	dato_agregar(njson.dato,"numero4 otra vez",&valorFlotante,sizeof(float),0,1,&imprimir_float);
+	/*
+	*   Hacer 2 func de datoAgregar, una con el json y otra con el dato sig
+	*/
+
+	njson_init(&njson,"PruebaJson","numero1 unsigned",&valorUnsigned,sizeof(unsigned),0,&njson_imprimir_unsigned);
+	njson_dato_agregar(&njson,"numero2 integer",&valorInteger,sizeof(int),0,&njson_imprimir_entero);
+	njson_dato_agregar(&njson,"numero3 double",&valorDouble,sizeof(double),0,&njson_imprimir_double);
+	njson_dato_agregar(&njson,"numero4 float",&valorFlotante,sizeof(float),0,&njson_imprimir_float);
+	njson_dato_agregar(&njson,"boolean",&valorBoleano,sizeof(char),0,&njson_imprimir_boolean);
+	njson_dato_agregar(&njson,"texto",valorString,strlen(valorString)+1,0,&njson_imprimir_string);
+	njson_dato_agregar(&njson,"numero3 otra vez",&valorDouble,sizeof(double),0,&njson_imprimir_double);
+	njson_dato_agregar(&njson,"boolean otra vez",&valorBoleano,sizeof(char),0,&njson_imprimir_boolean);
+	njson_dato_agregar(&njson,"numero4 otra vez",&valorFlotante,sizeof(float),0,&njson_imprimir_float);
 
 
 	if	(argc == 3 || argc == 1){
@@ -45,12 +49,12 @@ void main(int argc, char* argv[]) {
 		}
 
 		if(argc == 3){ //Tenemos dos parametros -f y nombre archivo
-			
+
 			//Valido las opciones pasadas. OK
 			//Validar -f OK
 			//Validar nombre archivo y guardarlo en nombre_archivo OK
 			if (strcmp(argv[1], "-f") == 0 && strlen(argv[2]) <= NAME_MAX){
-				
+
 				*nombre_archivo = argv[2];
 
 				//Guardo en njson en un archivo con nombre "nombre_archivo".
@@ -58,13 +62,13 @@ void main(int argc, char* argv[]) {
 
 			}
 		}
-		
-		
+
+
 	}
 
 	//Termino el programa, libero la memoria del njson para evitar goteo de memoria
 	njson_release(&njson);
 
-	
+
 }//Fin main
 

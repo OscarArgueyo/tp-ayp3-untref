@@ -4,13 +4,12 @@
 #include "NJson.h"
 
 NJson* njson_init(
-	NJson* this, 
-	char* nombre, 
-	char* nombreDato, 
+	NJson* this,
+	char* nombre,
+	char* nombreDato,
 	void* valor,
 	unsigned sizeDato,
-	char array, 
-	unsigned longArray, 
+	unsigned longArray,
 	void* (*func)(void*)
 )
 {
@@ -18,7 +17,7 @@ NJson* njson_init(
 	strcpy(this->nombre,nombre);
 	this->dato = malloc(sizeof(Dato));
 	this->dato = 0x0;
-	this->dato = dato_agregar(this->dato,nombreDato,valor,sizeDato,array,longArray,func);
+	this->dato = dato_agregar(this->dato,nombreDato,valor,sizeDato,longArray,func);
 	return this;
 
 }
@@ -30,7 +29,7 @@ void njson_release(NJson* this){
 		dato_release(this->dato);
 		free(this->dato);
 		this->dato = 0x0;
-		
+
 		//free(this);
 		memset(this , 0x0, sizeof(NJson));
 		this = 0x0;
@@ -38,7 +37,7 @@ void njson_release(NJson* this){
 
 }
 
-void dato_release(Dato* this){
+void njson_dato_release(Dato* this){
 	if(this){
 		free(this->nombre);
 		this->nombre = 0x0;
@@ -48,36 +47,33 @@ void dato_release(Dato* this){
 			dato_release(this->sig);
 			free(this->sig);
 		}
-			
+
 		//Libero todo bien
 	}
-	
+
 }
 
-Dato* dato_agregar(
-	Dato* this, 
-	char* nombre, 
-	void* valor, 
-	unsigned sizeDato, 
-	char array,
-	unsigned longArray, 
+void njson_dato_agregar(
+	NJson* this,
+	char* nombre,
+	void* valor,
+	unsigned sizeDato,
+	unsigned longArray,
 	void* (*func)(void*)
 ){
-
-	if(!this){
-		this = malloc(sizeof(Dato));
-		this->nombre = malloc(strlen(nombre)+1);
-		strcpy(this->nombre,nombre);
-		this->valor = malloc(sizeDato);
-		memcpy(this->valor,valor,sizeDato);
-		this->longArray = longArray;
-		this->array = array;
-		this->func = func;
-		this->sig = 0x0;
+    Dato* dato = this->dato;
+	if(!dato){
+		dato = malloc(sizeof(Dato));
+		dato->nombre = malloc(strlen(nombre)+1);
+		strcpy(dato->nombre,nombre);
+		dato->valor = malloc(sizeDato);
+		memcpy(dato->valor,valor,sizeDato);
+		dato->longArray = longArray;
+		dato->func = func;
+		dato->sig = 0x0;
 	}else{
-		this->sig = dato_agregar(this->sig,nombre,valor,sizeDato,array,longArray,func);
+		dato->sig = dato_agregar(this->sig,nombre,valor,sizeDato,longArray,func);
 	}
-	return this;
 
 }
 
@@ -86,10 +82,7 @@ void njson_print(NJson* this){
 	printf("{\n");
 	Dato* datoEscribir = this->dato;
 	while(datoEscribir){
-		printf("\"");
-		printf("%s",datoEscribir->nombre);
-		printf("\": ");
-		datoEscribir->func(datoEscribir->valor);
+		dato_escribir(datoEscribir);
 		datoEscribir = datoEscribir->sig;
 		if(datoEscribir != 0x0){
 			printf(",");
@@ -98,31 +91,31 @@ void njson_print(NJson* this){
 	printf("}\n");
 }
 
-void imprimir_entero(void* valor){	
+void njson_imprimir_entero(void* valor){
 	printf("%d",*(int*)valor);
 
 }
 
-void imprimir_unsigned( void* valor){
+void njson_imprimir_unsigned(void* valor){
 	printf("%u",*(unsigned*)valor);
-	
+
 }
 
-void imprimir_double(void* valor){
+void njson_imprimir_double(void* valor){
 	printf("%lf",*(double*)valor);
-	
+
 }
 
-void imprimir_float(void* valor){
+void njson_imprimir_float(void* valor){
 	printf("%f",*(float*)valor);
 }
 
-void imprimir_string(void* valor){
+void njson_imprimir_string(void* valor){
 	printf("\"%s\"",(char*)valor);
 
 }
 
-void imprimir_boolean(void* valor){
+void njson_imprimir_boolean(void* valor){
 	char bool = *(char*)valor;
 	if(bool == '0'){
 		printf("false");
@@ -146,5 +139,73 @@ unsigned int njson_tofile(NJson* this , char* filename){
 	}
 
 	return 1;
+
+}
+
+/**
+Primitivas de la entrega 3
+*/
+
+
+int njson_obtener_dato(NJson* this, char* clave , Dato* dato_encontrado){
+
+    Dato* dato = this->dato;
+    int encontrado = 0;
+	while(!encontrado && (dato)){
+            if(!strcmp(dato->nombre ,clave)){
+                encontrado = 1;
+                dato_encontrado = dato;
+            }else{
+                dato = dato->sig;
+            }
+	}
+	return encontrado;
+}
+
+void njson_cambiar_contenido(
+    NJson* this,
+	char* nombre,
+	void* valor,
+	unsigned sizeDato,
+	unsigned longArray,
+	void* (*func)(void*)
+){
+
+    Dato* dato_cambiar;
+
+    if(obtener_dato(this , nombre , dato_cambiar)){
+		dato_cambiar->valor = realloc(dato_cambiar->valor,sizeDato);
+		memcpy(dato_cambiar->valor,valor,sizeDato);
+		dato_cambiar->longArray = longArray;
+		dato_cambiar->func = func;
+        puts("Se cambio el dato");
+    }else{
+        puts("No se cambio el dato, porque no se encontro");
+    }
+
+}
+
+void njson_dato_escribir(Dato* dato){
+        printf("\"");
+		printf("%s",dato->nombre);
+		printf("\": ");
+        if(dato->longArray > 0){
+            imprimir_array(dato);
+        }else{
+            dato->func(dato->valor);
+        }
+
+}
+
+void njson_imprimir_array(Dato* dato){
+    printf("[");
+    for(int i = 0; i < dato->longArray; i++){
+        dato->func(dato->valor+i);
+        if(i+1 != dato->longArray){
+            printf(",");
+        }
+    }
+    printf("]");
+    }
 
 }
