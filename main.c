@@ -30,16 +30,16 @@ void main(int argc, char* argv[]) {
 	*   Hacer 2 func de datoAgregar, una con el json y otra con el dato sig
 	*/
 
-	njson_init(&njson,"PruebaJson","numero1 unsigned",&valorUnsigned,sizeof(unsigned),0,&njson_imprimir_unsigned);
-	njson_dato_agregar(&njson,"numero2 integer",&valorInteger,sizeof(int),0,&njson_imprimir_entero);
-	njson_dato_agregar(&njson,"numero3 double",&valorDouble,sizeof(double),0,&njson_imprimir_double);
-	njson_dato_agregar(&njson,"numero4 float",&valorFlotante,sizeof(float),0,&njson_imprimir_float);
-	njson_dato_agregar(&njson,"boolean",&valorBoleano,sizeof(char),0,&njson_imprimir_boolean);
-	njson_dato_agregar(&njson,"texto",valorString,strlen(valorString)+1,0,&njson_imprimir_string);
-	njson_dato_agregar(&njson,"numero3 otra vez",&valorDouble,sizeof(double),0,&njson_imprimir_double);
-	njson_dato_agregar(&njson,"boolean otra vez",&valorBoleano,sizeof(char),0,&njson_imprimir_boolean);
-	njson_dato_agregar(&njson,"numero4 otra vez",&valorFlotante,sizeof(float),0,&njson_imprimir_float);
-
+	njson_init(&njson,"PruebaJson","numero1 unsigned",&valorUnsigned,sizeof(unsigned),0,(void*)&njson_imprimir_unsigned);
+	njson_dato_agregar(&njson,"numero2 integer",&valorInteger,sizeof(int),0,(void*)&njson_imprimir_entero);
+	njson_dato_agregar(&njson,"numero3 double",&valorDouble,sizeof(double),0,(void*)&njson_imprimir_double);
+	njson_dato_agregar(&njson,"numero4 float",&valorFlotante,sizeof(float),0,(void*)&njson_imprimir_float);
+	njson_dato_agregar(&njson,"boolean",&valorBoleano,sizeof(char),0,(void*)&njson_imprimir_boolean);
+	njson_dato_agregar(&njson,"texto",valorString,strlen(valorString)+1,0,(void*)&njson_imprimir_string);
+	njson_dato_agregar(&njson,"numero3 otra vez",&valorDouble,sizeof(double),0,(void*)&njson_imprimir_double);
+	/*njson_dato_agregar(&njson,"boolean otra vez",&valorBoleano,sizeof(char),0,(void*)&njson_imprimir_boolean);
+	njson_dato_agregar(&njson,"numero4 otra vez",&valorFlotante,sizeof(float),0,(void*)&njson_imprimir_float);
+	*/
 
 	if	(argc == 3 || argc == 1){
 		//Podemos avanzar

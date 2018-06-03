@@ -73,6 +73,15 @@ void njson_dato_agregar(
 	void* (*func)(void*)
 );
 
+Dato* njson_agregar_siguiente_dato(
+	Dato* dato, 
+	char* nombre,
+	void* valor,
+	unsigned sizeDato,
+	unsigned longArray,
+	void* (*func)(void*)
+);
+
 /**
  * Primitiva de impresion del njson
  *
@@ -117,10 +126,16 @@ void njson_imprimir_boolean(void* valor);
 
 
 /**
+ * Primitiva de impresion de arrays de datos
+ **/
+void njson_imprimir_array(Dato* dato);
+
+
+/**
 Primitivas de la entrega 3
 */
 
-Dato* njson_obtener_dato(NJson* this, char* clave);
+int njson_obtener_dato(NJson* this, char* clave, Dato* dato);
 
 void njson_cambiar_contenido(
     NJson* this,
@@ -130,6 +145,8 @@ void njson_cambiar_contenido(
 	unsigned longArray,
 	void* (*func)(void*)
 );
+
+void njson_dato_escribir(Dato* dato);
 
 /**
  * Fin Primitivas del NJson
