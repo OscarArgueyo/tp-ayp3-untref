@@ -15,7 +15,7 @@ NJson* njson_init(
 {
 	this->nombre = malloc(strlen(nombre)+1);
 	strcpy(this->nombre,nombre);
-	njson_dato_agregar(this,nombreDato,valor,sizeDato,longArray,func);
+	this->dato = njson_agregar_siguiente_dato(this->dato,nombreDato,valor,sizeDato,longArray,func);
 	return this;
 
 }
@@ -60,7 +60,7 @@ void njson_dato_agregar(
 	void* (*func)(void*)
 ){
     Dato* dato = this->dato;
-	this->dato = njson_agregar_siguiente_dato(dato,nombre,valor,sizeDato,longArray,func);
+	njson_agregar_siguiente_dato(dato,nombre,valor,sizeDato,longArray,func);
 
 	//return dato;
 
@@ -75,6 +75,8 @@ Dato* njson_agregar_siguiente_dato(
 	void* (*func)(void*)
 ){
 	if(!dato){
+			//puts("estamos aca");
+			//exit(1);
 			dato = malloc(sizeof(Dato));
 			dato->nombre = malloc(strlen(nombre)+1);
 			strcpy(dato->nombre,nombre);
@@ -84,11 +86,14 @@ Dato* njson_agregar_siguiente_dato(
 			dato->func = func;
 			dato->sig = 0x0;
 			
+			
 	}else{
-		njson_agregar_siguiente_dato(dato->sig,nombre,valor,sizeDato,longArray,func);
+		dato->sig = njson_agregar_siguiente_dato(dato->sig,nombre,valor,sizeDato,longArray,func);
 	}
 
 	return dato;
+
+	
 }
 
 void njson_print(NJson* this){
