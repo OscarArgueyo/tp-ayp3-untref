@@ -85,6 +85,7 @@ Dato* njson_agregar_siguiente_dato(
 			dato->valor = malloc(sizeDato);
 			memcpy(dato->valor,valor,sizeDato);
 			dato->longArray = longArray;
+			dato->sizeDato = sizeDato;
 			dato->func = func;
 			dato->sig = 0x0;
 
@@ -281,7 +282,7 @@ void njson_imprimir_array(Dato* dato, FILE* out, unsigned opcion){
 	if(opcion == 0){
 		printf("[");
 		for(int i = 0; i < dato->longArray; i++){
-			dato->func(dato->valor+i,NULL,0);
+			dato->func(dato->valor+(i*(dato->sizeDato)/dato->longArray),NULL,0);
 			if(i+1 != dato->longArray){
 				printf(",");
 			}
@@ -290,7 +291,7 @@ void njson_imprimir_array(Dato* dato, FILE* out, unsigned opcion){
 	}else{
 		fprintf(out, "[");
 		for(int i = 0; i < dato->longArray; i++){
-			dato->func(dato->valor+i,out,1);
+			dato->func(dato->valor+(i*(dato->sizeDato)/dato->longArray),out,1);
 			if(i+1 != dato->longArray){
 				fprintf(out, ",");
 			}
