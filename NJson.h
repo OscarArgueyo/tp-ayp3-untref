@@ -23,6 +23,7 @@ typedef struct _dato{
 	char* nombre;
 	void* valor;
 	unsigned longArray;
+	unsigned sizeDato;
 	struct _dato* sig;
 	void* (*func)(void*,FILE*,unsigned);
 } Dato;
