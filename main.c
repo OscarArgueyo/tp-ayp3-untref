@@ -82,10 +82,9 @@ void main(int argc, char* argv[]) {
 	njson_dato_agregar(&njson,"contents",arrayContents,sizeof(NJson),1,(void*)&njson_print);
 	njson_dato_agregar(&njson,"revision",&revisionJson,sizeof(unsigned),0,(void*)&njson_imprimir_unsigned);
 
-	njson_print(&njson,NULL,0);
+	//njson_print(&njson,NULL,0);
 	//njson_tofile(&njson , "testeo.txt");
 
-	/*
 	if	(argc == 3 || argc == 1){
 		//Podemos avanzar
 		if(argc == 1){ //No tenemos parametros OK
@@ -109,13 +108,12 @@ void main(int argc, char* argv[]) {
 		}
 
 
-	}*/
+	}
 
 	//Termino el programa, libero la memoria del njson para evitar goteo de memoria
 	njson_release(&photoInfo);
 	njson_release(&contents);
 	njson_release(&njson);
-
 
 }//Fin main
 
