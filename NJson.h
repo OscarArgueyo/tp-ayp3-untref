@@ -3,7 +3,7 @@
 
 
 /**
- * Definiciones de los TDA de la solución
+ * Definiciones de los TDA de la soluciÃ³n
  **/
 
 /**
@@ -24,7 +24,7 @@ typedef struct _dato{
 	void* valor;
 	unsigned longArray;
 	struct _dato* sig;
-	void* (*func)(void*);
+	void* (*func)(void*,FILE*,unsigned);
 } Dato;
 
 
@@ -38,7 +38,7 @@ typedef struct _dato{
  * nombre: nombre del NJson.
  * nombreDato: nombre del primer dato.
  * valor: valor del primer dato.
- * sizeDato: tama�o del tipo de dato.
+ * sizeDato: tamaï¿½o del tipo de dato.
  * array: si es o no un array.
  * longArray: longitud del array.
  * func: puntero a la funcion que escribe el dato.
@@ -50,7 +50,7 @@ NJson* njson_init(
 	void* valor,
 	unsigned sizeDato,
 	unsigned longArray,
-	void* (*func)(void*)
+	void* (*func)(void*,FILE*,unsigned)
 );
 
 
@@ -70,7 +70,7 @@ void njson_dato_agregar(
 	void* valor,
 	unsigned sizeDato,
 	unsigned longArray,
-	void* (*func)(void*)
+	void* (*func)(void*,FILE*,unsigned)
 );
 
 Dato* njson_agregar_siguiente_dato(
@@ -79,14 +79,14 @@ Dato* njson_agregar_siguiente_dato(
 	void* valor,
 	unsigned sizeDato,
 	unsigned longArray,
-	void* (*func)(void*)
+	void* (*func)(void*,FILE*,unsigned)
 );
 
 /**
  * Primitiva de impresion del njson
  *
  **/
-void njson_print(NJson* this);
+void njson_print(NJson* this, FILE* out, unsigned opcion);
 
 /**
  * Primitiva de guardado de la impresion del njson como string en un archivo destino
@@ -97,38 +97,38 @@ unsigned int njson_tofile(NJson* this , char* filename);
 /**
  * Primitiva de impresion del tipo de dato: Entero
  **/
-void njson_imprimir_entero(void* valor);
+void njson_imprimir_entero(void* valor, FILE* out, unsigned opcion);
 
 /**
  * Primitiva de impresion del tipo de dato: Entero sin signo
  **/
-void njson_imprimir_unsigned(void* valor);
+void njson_imprimir_unsigned(void* valor, FILE* out, unsigned opcion);
 
 /**
  * Primitiva de impresion del tipo de dato: Double
  **/
-void njson_imprimir_double(void* valor);
+void njson_imprimir_double(void* valor, FILE* out, unsigned opcion);
 
 /**
  * Primitiva de impresion del tipo de dato: Flotante
  **/
-void njson_imprimir_float(void* valor);
+void njson_imprimir_float(void* valor, FILE* out, unsigned opcion);
 
 /**
  * Primitiva de impresion del tipo de dato: String
  **/
-void njson_imprimir_string(void* valor);
+void njson_imprimir_string(void* valor, FILE* out, unsigned opcion);
 
 /**
  * Primitiva de impresion del tipo de dato: Boolean
  **/
-void njson_imprimir_boolean(void* valor);
+void njson_imprimir_boolean(void* valor, FILE* out, unsigned opcion);
 
 
 /**
  * Primitiva de impresion de arrays de datos
  **/
-void njson_imprimir_array(Dato* dato);
+void njson_imprimir_array(Dato* dato, FILE* out, unsigned opcion);
 
 
 /**
@@ -143,10 +143,10 @@ void njson_cambiar_contenido(
 	void* valor,
 	unsigned sizeDato,
 	unsigned longArray,
-	void* (*func)(void*)
+	void* (*func)(void*,FILE*,unsigned)
 );
 
-void njson_dato_escribir(Dato* dato);
+void njson_dato_escribir(Dato* dato, FILE* out, unsigned opcion);
 
 /**
  * Fin Primitivas del NJson
