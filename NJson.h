@@ -136,8 +136,14 @@ void njson_imprimir_array(Dato* dato, FILE* out, unsigned opcion);
 Primitivas de la entrega 3
 */
 
+/**
+Obtenemos el dato de un njson a partir de la clave
+*/
 int njson_obtener_dato(NJson* this, char* clave, Dato* dato);
 
+/**
+Cambiamos el contenido de un elemento del njson a partir de la clave
+*/
 void njson_cambiar_contenido(
     NJson* this,
 	char* nombre,
@@ -147,62 +153,13 @@ void njson_cambiar_contenido(
 	void* (*func)(void*,FILE*,unsigned)
 );
 
+/**
+Escribimos el dato del json en el archivo definido en out
+*/
 void njson_dato_escribir(Dato* dato, FILE* out, unsigned opcion);
 
 /**
  * Fin Primitivas del NJson
  */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- /**
- * Otras Primitivas //Avanzando el TP los vamos a usar o modificar
- * char * njson_tostring(NJson* this);
- * void njson_print(NJson* this);
- *
- * void njson_agregar(NJson* njson, const char* clave, void* value);
- * int njson_existe_clave(NJson* njson, const char* clave);
- * Valor* njson_obtener_clave(NJson* njson, const char* clave);
- * void njson_eliminar_clave(NJson* njson, const char* clave);
- * void njson_liberar(NJson* njson);
- * char* escribir(char* string, NJson* this);
- * void escribir_entero(char* string, void* valor);
- * void escribir_ensigned(char* string, void* valor);
- * void escribir_double(char* string, void* valor);
- * void escribir_float(char* string, void* valor);
- * void escribir_string(char* string, void* valor);
- * void escribir_bolean(char* string, void* valor);
- */
-
-// Documentar todas las primitivas
-
 #endif // __NJSON_H__
 
