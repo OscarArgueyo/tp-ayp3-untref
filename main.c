@@ -82,9 +82,9 @@ void main(int argc, char* argv[]) {
 	njson_dato_agregar(&njson,"contents",arrayContents,sizeof(NJson),1,(void*)&njson_print);
 	njson_dato_agregar(&njson,"revision",&revisionJson,sizeof(unsigned),0,(void*)&njson_imprimir_unsigned);
 
-	//njson_print(&njson,NULL,0);
-	//njson_tofile(&njson , "testeo.txt");
-
+	//Tomamos las opciones ingresados por la terminal
+	//Ejecutando ./programa -f [nombre_archivo] para generar un archivo con nombre [nombre_archivo] con el json generado 
+	//Ejecutando ./programa imprime el njson en la terminal.
 	if	(argc == 3 || argc == 1){
 		//Podemos avanzar
 		if(argc == 1){ //No tenemos parametros OK
