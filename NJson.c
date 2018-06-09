@@ -217,19 +217,20 @@ Primitivas de la entrega 3
 */
 
 
-int njson_obtener_dato(NJson* this, char* clave , Dato* dato_encontrado){
+Dato* njson_obtener_dato(NJson* this, char* clave , Dato* dato_encontrado){
 
-    Dato* dato = this->dato;
-    int encontrado = 0;
+	Dato* dato = this->dato;
+	int encontrado = 0;
 	while(!encontrado && (dato)){
-            if(!strcmp(dato->nombre ,clave)){
-                encontrado = 1;
-                dato_encontrado = dato;
-            }else{
-                dato = dato->sig;
-            }
+		if(!strcmp(dato->nombre, clave)){
+			encontrado = 1;
+			//dato_encontrado = dato;
+		}else{
+			dato = dato->sig;
+		}
 	}
-	return encontrado;
+	//return encontrado;
+	return dato;
 }
 
 void njson_cambiar_contenido(
@@ -240,12 +241,14 @@ void njson_cambiar_contenido(
 	unsigned longArray,
 	void* (*func)(void*,FILE*,unsigned)
 ){
-
-    Dato* dato_cambiar;
-
-    if(njson_obtener_dato(this , nombre , dato_cambiar)){
+	Dato* dato_cambiar = 0x0;
+    dato_cambiar = njson_obtener_dato(this, nombre, dato_cambiar);
+	//Dato* dato_cambiar;
+    //if(njson_obtener_dato(this, nombre, dato_cambiar)){
+	if(dato_cambiar){
 		dato_cambiar->valor = realloc(dato_cambiar->valor,sizeDato);
 		memcpy(dato_cambiar->valor,valor,sizeDato);
+		dato_cambiar->sizeDato = sizeDato;
 		dato_cambiar->longArray = longArray;
 		dato_cambiar->func = func;
         puts("Se cambio el dato");
