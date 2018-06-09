@@ -139,7 +139,7 @@ Primitivas de la entrega 3
 /**
 Obtenemos el dato de un njson a partir de la clave
 */
-int njson_obtener_dato(NJson* this, char* clave, Dato* dato);
+Dato* njson_obtener_dato(NJson* this, char* clave, Dato* dato);
 
 /**
 Cambiamos el contenido de un elemento del njson a partir de la clave
