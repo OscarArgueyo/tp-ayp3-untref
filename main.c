@@ -5,9 +5,11 @@
  * @author your name
  * @date 2018-06-30
  */
+#include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include "NJson.h"
+
 
 #define NAME_MAX 255 // Largo maximo para nombre de archivos en linux.
 
@@ -52,6 +54,11 @@ void main(int argc, char* argv[]) {
 	char* root = "dropbox";
 	char* mimeType = "image/jpeg";
 	unsigned revision = 14511;
+
+	//Variables nuevas para evaluación
+	unsigned contents_2 = 95;
+	int array_int[3] = {3, 2, 1};
+	
 
 	njson_init(&contents,"contents","size",size,strlen(size)+1,0,(void*)&njson_imprimir_string);
 	njson_dato_agregar(&contents,"rev",rev,strlen(rev)+1,0,(void*)&njson_imprimir_string);
@@ -101,8 +108,25 @@ void main(int argc, char* argv[]) {
 	if	(argc == 3 || argc == 1){
 		//Podemos avanzar
 		if(argc == 1){ //No tenemos parametros OK
-			//njson_print(pnjson);
+			
 			njson_print(&njson,NULL,0);
+			njson_release(&photoInfo);
+			njson_release(&contents);
+			puts("\n");
+			/**
+			 * Agregado nuevo valor de contents e impresion en consola
+			 */
+			njson_cambiar_contenido(&njson, "contents" , &contents_2, sizeof(unsigned) , 0,(void*)&njson_imprimir_unsigned);
+			njson_print(&njson,NULL,0);
+			
+			/**
+			 * Agregado array de enteros llamado enteros e impresion en consola
+			 */
+			njson_dato_agregar(&njson,"enteros",&array_int,sizeof(array_int),sizeof(array_int)/sizeof(int),(void*)&njson_imprimir_entero);
+			puts("\n");
+			njson_print(&njson,NULL,0);
+
+
 		}
 
 		if(argc == 3){ //Tenemos dos parametros -f y nombre archivo
@@ -124,8 +148,8 @@ void main(int argc, char* argv[]) {
 	}
 
 	//Termino el programa, libero la memoria del njson para evitar goteo de memoria
-	njson_release(&photoInfo);
-	njson_release(&contents);
+	//njson_release(&photoInfo);
+	//njson_release(&contents);
 	njson_release(&njson);
 
 }//Fin main

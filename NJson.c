@@ -356,8 +356,7 @@ void njson_cambiar_contenido(
 	memcpy(dato_cambiar->valor,valor,sizeDato);
 	dato_cambiar->sizeDato = sizeDato;
 	dato_cambiar->longArray = longArray;
-	dato_cambiar->func = func;
-        puts("Se cambio el dato");
+	dato_cambiar->func = func;    
     }else{
         puts("No se cambio el dato, porque no se encontro");
     }
