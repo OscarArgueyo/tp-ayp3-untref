@@ -1,0 +1,474 @@
+\hypertarget{NJson_8c}{}\section{N\+Json.\+c File Reference}
+\label{NJson_8c}\index{N\+Json.\+c@{N\+Json.\+c}}
+
+
+Archivo \hyperlink{NJson_8c}{N\+Json.\+c} con la implementación de primitivas y declaracion de los T\+DA del Trabajo Práctico Final.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include $<$string.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}N\+Json.\+h\char`\"{}}\\*
+Include dependency graph for N\+Json.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{NJson_8h_a5e5bec717d1498c14b86bafe9bccf5d0}{N\+Json} $\ast$ \hyperlink{NJson_8c_ab7a71ddb00e25953c70a14c41a85e774}{njson\+\_\+init} (\hyperlink{NJson_8h_a5e5bec717d1498c14b86bafe9bccf5d0}{N\+Json} $\ast$this, char $\ast$nombre, char $\ast$nombre\+Dato, void $\ast$valor, unsigned size\+Dato, unsigned long\+Array, void $\ast$($\ast$func)(void $\ast$, F\+I\+LE $\ast$, unsigned))
+\begin{DoxyCompactList}\small\item\em Primitiva de inicializacion de la estructura njson. \end{DoxyCompactList}\item 
+void \hyperlink{NJson_8c_a33aac23caf27101de13e2e8bed7220c0}{njson\+\_\+release} (\hyperlink{NJson_8h_a5e5bec717d1498c14b86bafe9bccf5d0}{N\+Json} $\ast$this)
+\begin{DoxyCompactList}\small\item\em Liberacion de la memoria alocada por el njson pasado como parámetro. \end{DoxyCompactList}\item 
+void \hyperlink{NJson_8c_a364cead42306f112489be36e31be1872}{njson\+\_\+dato\+\_\+release} (\hyperlink{NJson_8h_a40e24be10062fbc0fc950581c6ca85fc}{Dato} $\ast$this)
+\begin{DoxyCompactList}\small\item\em Liberacion de la memoria alocada para un T\+DA Dato que componen al njson. \end{DoxyCompactList}\item 
+void \hyperlink{NJson_8c_a0b1c1e98be8d6370f29b8d04b5283132}{njson\+\_\+dato\+\_\+agregar} (\hyperlink{NJson_8h_a5e5bec717d1498c14b86bafe9bccf5d0}{N\+Json} $\ast$this, char $\ast$nombre, void $\ast$valor, unsigned size\+Dato, unsigned long\+Array, void $\ast$($\ast$func)(void $\ast$, F\+I\+LE $\ast$, unsigned))
+\begin{DoxyCompactList}\small\item\em Primitiva que permite agregar un T\+DA Dato a la estructura del njson. \end{DoxyCompactList}\item 
+\hyperlink{NJson_8h_a40e24be10062fbc0fc950581c6ca85fc}{Dato} $\ast$ \hyperlink{NJson_8c_a2037a6452a581e78d9c2a2dda6d27334}{njson\+\_\+agregar\+\_\+siguiente\+\_\+dato} (\hyperlink{NJson_8h_a40e24be10062fbc0fc950581c6ca85fc}{Dato} $\ast$dato, char $\ast$nombre, void $\ast$valor, unsigned size\+Dato, unsigned long\+Array, void $\ast$($\ast$func)(void $\ast$, F\+I\+LE $\ast$, unsigned))
+\begin{DoxyCompactList}\small\item\em Primitiva de agregacion de datos al njson si ya tiene datos, se agrega de manera consecutiva al ultimo dato ingresado. \end{DoxyCompactList}\item 
+void \hyperlink{NJson_8c_a18a0e798e5edd81b5fce5132fcf70a5e}{njson\+\_\+print} (\hyperlink{NJson_8h_a5e5bec717d1498c14b86bafe9bccf5d0}{N\+Json} $\ast$this, F\+I\+LE $\ast$out, unsigned opcion)
+\begin{DoxyCompactList}\small\item\em Primitiva de impresion del njson. Imprime en consola el njson pasado como parametro si el parametro opcion es 0, sino lo imprime sobre el archivo pasado como parametro. \end{DoxyCompactList}\item 
+void \hyperlink{NJson_8c_ab9aee09540732820660f141e081b0bd7}{njson\+\_\+imprimir\+\_\+entero} (void $\ast$valor, F\+I\+LE $\ast$out, unsigned opcion)
+\begin{DoxyCompactList}\small\item\em Primitiva de impresión de un tipo de dato entero (con signo) en formato válido Json. \end{DoxyCompactList}\item 
+void \hyperlink{NJson_8c_ac1c5a25a64a7c0758da0d8258cf7a239}{njson\+\_\+imprimir\+\_\+unsigned} (void $\ast$valor, F\+I\+LE $\ast$out, unsigned opcion)
+\begin{DoxyCompactList}\small\item\em Primitiva de impresión de un tipo de dato entero (sin signo) en formato válido Json. \end{DoxyCompactList}\item 
+void \hyperlink{NJson_8c_ab580ae9eb73d15fa34893e7e97db9367}{njson\+\_\+imprimir\+\_\+double} (void $\ast$valor, F\+I\+LE $\ast$out, unsigned opcion)
+\begin{DoxyCompactList}\small\item\em Primitiva de impresión de un tipo de dato double en formato válido Json. \end{DoxyCompactList}\item 
+void \hyperlink{NJson_8c_a9817d799027cef6123be9388fc9e0bbf}{njson\+\_\+imprimir\+\_\+float} (void $\ast$valor, F\+I\+LE $\ast$out, unsigned opcion)
+\begin{DoxyCompactList}\small\item\em Primitiva de impresión de un tipo de dato entero float en formato válido Json. \end{DoxyCompactList}\item 
+void \hyperlink{NJson_8c_aabbd0691a6e237b24815a537ce2369cb}{njson\+\_\+imprimir\+\_\+string} (void $\ast$valor, F\+I\+LE $\ast$out, unsigned opcion)
+\begin{DoxyCompactList}\small\item\em Primitiva de impresión de un tipo de dato string en formato válido Json. \end{DoxyCompactList}\item 
+void \hyperlink{NJson_8c_a391e358598ca25f4fcc40cc817592477}{njson\+\_\+imprimir\+\_\+boolean} (void $\ast$valor, F\+I\+LE $\ast$out, unsigned opcion)
+\begin{DoxyCompactList}\small\item\em Primitiva de impresión de un tipo de dato Boolean en formato válido Json\+: true o false. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{NJson_8c_a9a536d3589a348aad9c532f76aa24f45}{njson\+\_\+tofile} (\hyperlink{NJson_8h_a5e5bec717d1498c14b86bafe9bccf5d0}{N\+Json} $\ast$this, char $\ast$filename)
+\begin{DoxyCompactList}\small\item\em Primitiva del T\+DA njson de impresion del contenido del njson en un archivo con nombre filename. \end{DoxyCompactList}\item 
+int \hyperlink{NJson_8c_a63e23ef358aeb20a585d432b728e7ee8}{njson\+\_\+obtener\+\_\+dato} (\hyperlink{NJson_8h_a5e5bec717d1498c14b86bafe9bccf5d0}{N\+Json} $\ast$this, char $\ast$clave, \hyperlink{NJson_8h_a40e24be10062fbc0fc950581c6ca85fc}{Dato} $\ast$$\ast$dato\+\_\+encontrado)
+\begin{DoxyCompactList}\small\item\em Primitiva del T\+DA njson para obtener el dato a partir de una clave dada, se guarda el dato en la variable dato\+\_\+encontrado. \end{DoxyCompactList}\item 
+void \hyperlink{NJson_8c_a2427773f0648aa415d6fa0e0f04f7fe3}{njson\+\_\+cambiar\+\_\+contenido} (\hyperlink{NJson_8h_a5e5bec717d1498c14b86bafe9bccf5d0}{N\+Json} $\ast$this, char $\ast$nombre, void $\ast$valor, unsigned size\+Dato, unsigned long\+Array, void $\ast$($\ast$func)(void $\ast$, F\+I\+LE $\ast$, unsigned))
+\begin{DoxyCompactList}\small\item\em Primitiva del T\+DA njson para cambiar el contenido (valor) de un elemento del nsjon, a partir de una clave dada valida. \end{DoxyCompactList}\item 
+void \hyperlink{NJson_8c_a7dd369c06f2d9d58f53a52ce767afe21}{njson\+\_\+dato\+\_\+escribir} (\hyperlink{NJson_8h_a40e24be10062fbc0fc950581c6ca85fc}{Dato} $\ast$dato, F\+I\+LE $\ast$out, unsigned opcion)
+\begin{DoxyCompactList}\small\item\em Primitiva del nsjon para imprimir los datos que lo componen, se invoca la funcion de impresion de cada dato o si es un array de datos se itera sobre estos aplicando la funcion de impresion para cada elemento del arreglo. \end{DoxyCompactList}\item 
+void \hyperlink{NJson_8c_a386f5b6b8fa4f6790fd7477567e5590a}{njson\+\_\+imprimir\+\_\+array} (\hyperlink{NJson_8h_a40e24be10062fbc0fc950581c6ca85fc}{Dato} $\ast$dato, F\+I\+LE $\ast$out, unsigned opcion)
+\begin{DoxyCompactList}\small\item\em Primitiva del nsjon para la impresion de coleccion de un mismo tipo de dato. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Archivo \hyperlink{NJson_8c}{N\+Json.\+c} con la implementación de primitivas y declaracion de los T\+DA del Trabajo Práctico Final. 
+
+\begin{DoxyAuthor}{Author}
+Argueyo Oscar, Diaz Alan 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2018-\/06-\/29 
+\end{DoxyDate}
+
+
+\subsection{Function Documentation}
+\index{N\+Json.\+c@{N\+Json.\+c}!njson\+\_\+agregar\+\_\+siguiente\+\_\+dato@{njson\+\_\+agregar\+\_\+siguiente\+\_\+dato}}
+\index{njson\+\_\+agregar\+\_\+siguiente\+\_\+dato@{njson\+\_\+agregar\+\_\+siguiente\+\_\+dato}!N\+Json.\+c@{N\+Json.\+c}}
+\subsubsection[{\texorpdfstring{njson\+\_\+agregar\+\_\+siguiente\+\_\+dato(\+Dato $\ast$dato, char $\ast$nombre, void $\ast$valor, unsigned size\+Dato, unsigned long\+Array, void $\ast$($\ast$func)(void $\ast$, F\+I\+L\+E $\ast$, unsigned))}{njson_agregar_siguiente_dato(Dato *dato, char *nombre, void *valor, unsigned sizeDato, unsigned longArray, void *(*func)(void *, FILE *, unsigned))}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Dato}$\ast$ njson\+\_\+agregar\+\_\+siguiente\+\_\+dato (
+\begin{DoxyParamCaption}
+\item[{{\bf Dato} $\ast$}]{dato, }
+\item[{char $\ast$}]{nombre, }
+\item[{void $\ast$}]{valor, }
+\item[{unsigned}]{size\+Dato, }
+\item[{unsigned}]{long\+Array, }
+\item[{void $\ast$($\ast$)(void $\ast$, F\+I\+LE $\ast$, unsigned)}]{func}
+\end{DoxyParamCaption}
+)}\hypertarget{NJson_8c_a2037a6452a581e78d9c2a2dda6d27334}{}\label{NJson_8c_a2037a6452a581e78d9c2a2dda6d27334}
+
+
+Primitiva de agregacion de datos al njson si ya tiene datos, se agrega de manera consecutiva al ultimo dato ingresado. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dato} & \\
+\hline
+{\em nombre} & \\
+\hline
+{\em valor} & \\
+\hline
+{\em size\+Dato} & \\
+\hline
+{\em Array} & \\
+\hline
+{\em func} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Dato$\ast$ 
+\end{DoxyReturn}
+\index{N\+Json.\+c@{N\+Json.\+c}!njson\+\_\+cambiar\+\_\+contenido@{njson\+\_\+cambiar\+\_\+contenido}}
+\index{njson\+\_\+cambiar\+\_\+contenido@{njson\+\_\+cambiar\+\_\+contenido}!N\+Json.\+c@{N\+Json.\+c}}
+\subsubsection[{\texorpdfstring{njson\+\_\+cambiar\+\_\+contenido(\+N\+Json $\ast$this, char $\ast$nombre, void $\ast$valor, unsigned size\+Dato, unsigned long\+Array, void $\ast$($\ast$func)(void $\ast$, F\+I\+L\+E $\ast$, unsigned))}{njson_cambiar_contenido(NJson *this, char *nombre, void *valor, unsigned sizeDato, unsigned longArray, void *(*func)(void *, FILE *, unsigned))}}]{\setlength{\rightskip}{0pt plus 5cm}void njson\+\_\+cambiar\+\_\+contenido (
+\begin{DoxyParamCaption}
+\item[{{\bf N\+Json} $\ast$}]{this, }
+\item[{char $\ast$}]{nombre, }
+\item[{void $\ast$}]{valor, }
+\item[{unsigned}]{size\+Dato, }
+\item[{unsigned}]{long\+Array, }
+\item[{void $\ast$($\ast$)(void $\ast$, F\+I\+LE $\ast$, unsigned)}]{func}
+\end{DoxyParamCaption}
+)}\hypertarget{NJson_8c_a2427773f0648aa415d6fa0e0f04f7fe3}{}\label{NJson_8c_a2427773f0648aa415d6fa0e0f04f7fe3}
+
+
+Primitiva del T\+DA njson para cambiar el contenido (valor) de un elemento del nsjon, a partir de una clave dada valida. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em this} & \\
+\hline
+{\em nombre} & \\
+\hline
+{\em valor} & \\
+\hline
+{\em size\+Dato} & \\
+\hline
+{\em Array} & \\
+\hline
+{\em func} & \\
+\hline
+\end{DoxyParams}
+\index{N\+Json.\+c@{N\+Json.\+c}!njson\+\_\+dato\+\_\+agregar@{njson\+\_\+dato\+\_\+agregar}}
+\index{njson\+\_\+dato\+\_\+agregar@{njson\+\_\+dato\+\_\+agregar}!N\+Json.\+c@{N\+Json.\+c}}
+\subsubsection[{\texorpdfstring{njson\+\_\+dato\+\_\+agregar(\+N\+Json $\ast$this, char $\ast$nombre, void $\ast$valor, unsigned size\+Dato, unsigned long\+Array, void $\ast$($\ast$func)(void $\ast$, F\+I\+L\+E $\ast$, unsigned))}{njson_dato_agregar(NJson *this, char *nombre, void *valor, unsigned sizeDato, unsigned longArray, void *(*func)(void *, FILE *, unsigned))}}]{\setlength{\rightskip}{0pt plus 5cm}void njson\+\_\+dato\+\_\+agregar (
+\begin{DoxyParamCaption}
+\item[{{\bf N\+Json} $\ast$}]{this, }
+\item[{char $\ast$}]{nombre, }
+\item[{void $\ast$}]{valor, }
+\item[{unsigned}]{size\+Dato, }
+\item[{unsigned}]{long\+Array, }
+\item[{void $\ast$($\ast$)(void $\ast$, F\+I\+LE $\ast$, unsigned)}]{func}
+\end{DoxyParamCaption}
+)}\hypertarget{NJson_8c_a0b1c1e98be8d6370f29b8d04b5283132}{}\label{NJson_8c_a0b1c1e98be8d6370f29b8d04b5283132}
+
+
+Primitiva que permite agregar un T\+DA Dato a la estructura del njson. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em this} & \\
+\hline
+{\em nombre} & \\
+\hline
+{\em valor} & \\
+\hline
+{\em size\+Dato} & \\
+\hline
+{\em Array} & \\
+\hline
+{\em func} & funcion de impresion del dato \\
+\hline
+\end{DoxyParams}
+\index{N\+Json.\+c@{N\+Json.\+c}!njson\+\_\+dato\+\_\+escribir@{njson\+\_\+dato\+\_\+escribir}}
+\index{njson\+\_\+dato\+\_\+escribir@{njson\+\_\+dato\+\_\+escribir}!N\+Json.\+c@{N\+Json.\+c}}
+\subsubsection[{\texorpdfstring{njson\+\_\+dato\+\_\+escribir(\+Dato $\ast$dato, F\+I\+L\+E $\ast$out, unsigned opcion)}{njson_dato_escribir(Dato *dato, FILE *out, unsigned opcion)}}]{\setlength{\rightskip}{0pt plus 5cm}void njson\+\_\+dato\+\_\+escribir (
+\begin{DoxyParamCaption}
+\item[{{\bf Dato} $\ast$}]{dato, }
+\item[{F\+I\+LE $\ast$}]{out, }
+\item[{unsigned}]{opcion}
+\end{DoxyParamCaption}
+)}\hypertarget{NJson_8c_a7dd369c06f2d9d58f53a52ce767afe21}{}\label{NJson_8c_a7dd369c06f2d9d58f53a52ce767afe21}
+
+
+Primitiva del nsjon para imprimir los datos que lo componen, se invoca la funcion de impresion de cada dato o si es un array de datos se itera sobre estos aplicando la funcion de impresion para cada elemento del arreglo. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dato} & \\
+\hline
+{\em out} & \\
+\hline
+{\em opcion} & \\
+\hline
+\end{DoxyParams}
+\index{N\+Json.\+c@{N\+Json.\+c}!njson\+\_\+dato\+\_\+release@{njson\+\_\+dato\+\_\+release}}
+\index{njson\+\_\+dato\+\_\+release@{njson\+\_\+dato\+\_\+release}!N\+Json.\+c@{N\+Json.\+c}}
+\subsubsection[{\texorpdfstring{njson\+\_\+dato\+\_\+release(\+Dato $\ast$this)}{njson_dato_release(Dato *this)}}]{\setlength{\rightskip}{0pt plus 5cm}void njson\+\_\+dato\+\_\+release (
+\begin{DoxyParamCaption}
+\item[{{\bf Dato} $\ast$}]{this}
+\end{DoxyParamCaption}
+)}\hypertarget{NJson_8c_a364cead42306f112489be36e31be1872}{}\label{NJson_8c_a364cead42306f112489be36e31be1872}
+
+
+Liberacion de la memoria alocada para un T\+DA Dato que componen al njson. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em this} & Puntero al dato que compone al njson \\
+\hline
+\end{DoxyParams}
+\index{N\+Json.\+c@{N\+Json.\+c}!njson\+\_\+imprimir\+\_\+array@{njson\+\_\+imprimir\+\_\+array}}
+\index{njson\+\_\+imprimir\+\_\+array@{njson\+\_\+imprimir\+\_\+array}!N\+Json.\+c@{N\+Json.\+c}}
+\subsubsection[{\texorpdfstring{njson\+\_\+imprimir\+\_\+array(\+Dato $\ast$dato, F\+I\+L\+E $\ast$out, unsigned opcion)}{njson_imprimir_array(Dato *dato, FILE *out, unsigned opcion)}}]{\setlength{\rightskip}{0pt plus 5cm}void njson\+\_\+imprimir\+\_\+array (
+\begin{DoxyParamCaption}
+\item[{{\bf Dato} $\ast$}]{dato, }
+\item[{F\+I\+LE $\ast$}]{out, }
+\item[{unsigned}]{opcion}
+\end{DoxyParamCaption}
+)}\hypertarget{NJson_8c_a386f5b6b8fa4f6790fd7477567e5590a}{}\label{NJson_8c_a386f5b6b8fa4f6790fd7477567e5590a}
+
+
+Primitiva del nsjon para la impresion de coleccion de un mismo tipo de dato. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dato} & \\
+\hline
+{\em out} & \\
+\hline
+{\em opcion} & \\
+\hline
+\end{DoxyParams}
+\index{N\+Json.\+c@{N\+Json.\+c}!njson\+\_\+imprimir\+\_\+boolean@{njson\+\_\+imprimir\+\_\+boolean}}
+\index{njson\+\_\+imprimir\+\_\+boolean@{njson\+\_\+imprimir\+\_\+boolean}!N\+Json.\+c@{N\+Json.\+c}}
+\subsubsection[{\texorpdfstring{njson\+\_\+imprimir\+\_\+boolean(void $\ast$valor, F\+I\+L\+E $\ast$out, unsigned opcion)}{njson_imprimir_boolean(void *valor, FILE *out, unsigned opcion)}}]{\setlength{\rightskip}{0pt plus 5cm}void njson\+\_\+imprimir\+\_\+boolean (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{valor, }
+\item[{F\+I\+LE $\ast$}]{out, }
+\item[{unsigned}]{opcion}
+\end{DoxyParamCaption}
+)}\hypertarget{NJson_8c_a391e358598ca25f4fcc40cc817592477}{}\label{NJson_8c_a391e358598ca25f4fcc40cc817592477}
+
+
+Primitiva de impresión de un tipo de dato Boolean en formato válido Json\+: true o false. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em valor} & \\
+\hline
+{\em out} & \\
+\hline
+{\em opcion} & \\
+\hline
+\end{DoxyParams}
+\index{N\+Json.\+c@{N\+Json.\+c}!njson\+\_\+imprimir\+\_\+double@{njson\+\_\+imprimir\+\_\+double}}
+\index{njson\+\_\+imprimir\+\_\+double@{njson\+\_\+imprimir\+\_\+double}!N\+Json.\+c@{N\+Json.\+c}}
+\subsubsection[{\texorpdfstring{njson\+\_\+imprimir\+\_\+double(void $\ast$valor, F\+I\+L\+E $\ast$out, unsigned opcion)}{njson_imprimir_double(void *valor, FILE *out, unsigned opcion)}}]{\setlength{\rightskip}{0pt plus 5cm}void njson\+\_\+imprimir\+\_\+double (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{valor, }
+\item[{F\+I\+LE $\ast$}]{out, }
+\item[{unsigned}]{opcion}
+\end{DoxyParamCaption}
+)}\hypertarget{NJson_8c_ab580ae9eb73d15fa34893e7e97db9367}{}\label{NJson_8c_ab580ae9eb73d15fa34893e7e97db9367}
+
+
+Primitiva de impresión de un tipo de dato double en formato válido Json. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em valor} & \\
+\hline
+{\em out} & \\
+\hline
+{\em opcion} & \\
+\hline
+\end{DoxyParams}
+\index{N\+Json.\+c@{N\+Json.\+c}!njson\+\_\+imprimir\+\_\+entero@{njson\+\_\+imprimir\+\_\+entero}}
+\index{njson\+\_\+imprimir\+\_\+entero@{njson\+\_\+imprimir\+\_\+entero}!N\+Json.\+c@{N\+Json.\+c}}
+\subsubsection[{\texorpdfstring{njson\+\_\+imprimir\+\_\+entero(void $\ast$valor, F\+I\+L\+E $\ast$out, unsigned opcion)}{njson_imprimir_entero(void *valor, FILE *out, unsigned opcion)}}]{\setlength{\rightskip}{0pt plus 5cm}void njson\+\_\+imprimir\+\_\+entero (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{valor, }
+\item[{F\+I\+LE $\ast$}]{out, }
+\item[{unsigned}]{opcion}
+\end{DoxyParamCaption}
+)}\hypertarget{NJson_8c_ab9aee09540732820660f141e081b0bd7}{}\label{NJson_8c_ab9aee09540732820660f141e081b0bd7}
+
+
+Primitiva de impresión de un tipo de dato entero (con signo) en formato válido Json. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em valor} & \\
+\hline
+{\em out} & \\
+\hline
+{\em opcion} & \\
+\hline
+\end{DoxyParams}
+\index{N\+Json.\+c@{N\+Json.\+c}!njson\+\_\+imprimir\+\_\+float@{njson\+\_\+imprimir\+\_\+float}}
+\index{njson\+\_\+imprimir\+\_\+float@{njson\+\_\+imprimir\+\_\+float}!N\+Json.\+c@{N\+Json.\+c}}
+\subsubsection[{\texorpdfstring{njson\+\_\+imprimir\+\_\+float(void $\ast$valor, F\+I\+L\+E $\ast$out, unsigned opcion)}{njson_imprimir_float(void *valor, FILE *out, unsigned opcion)}}]{\setlength{\rightskip}{0pt plus 5cm}void njson\+\_\+imprimir\+\_\+float (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{valor, }
+\item[{F\+I\+LE $\ast$}]{out, }
+\item[{unsigned}]{opcion}
+\end{DoxyParamCaption}
+)}\hypertarget{NJson_8c_a9817d799027cef6123be9388fc9e0bbf}{}\label{NJson_8c_a9817d799027cef6123be9388fc9e0bbf}
+
+
+Primitiva de impresión de un tipo de dato entero float en formato válido Json. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em valor} & \\
+\hline
+{\em out} & \\
+\hline
+{\em opcion} & \\
+\hline
+\end{DoxyParams}
+\index{N\+Json.\+c@{N\+Json.\+c}!njson\+\_\+imprimir\+\_\+string@{njson\+\_\+imprimir\+\_\+string}}
+\index{njson\+\_\+imprimir\+\_\+string@{njson\+\_\+imprimir\+\_\+string}!N\+Json.\+c@{N\+Json.\+c}}
+\subsubsection[{\texorpdfstring{njson\+\_\+imprimir\+\_\+string(void $\ast$valor, F\+I\+L\+E $\ast$out, unsigned opcion)}{njson_imprimir_string(void *valor, FILE *out, unsigned opcion)}}]{\setlength{\rightskip}{0pt plus 5cm}void njson\+\_\+imprimir\+\_\+string (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{valor, }
+\item[{F\+I\+LE $\ast$}]{out, }
+\item[{unsigned}]{opcion}
+\end{DoxyParamCaption}
+)}\hypertarget{NJson_8c_aabbd0691a6e237b24815a537ce2369cb}{}\label{NJson_8c_aabbd0691a6e237b24815a537ce2369cb}
+
+
+Primitiva de impresión de un tipo de dato string en formato válido Json. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em valor} & \\
+\hline
+{\em out} & \\
+\hline
+{\em opcion} & \\
+\hline
+\end{DoxyParams}
+\index{N\+Json.\+c@{N\+Json.\+c}!njson\+\_\+imprimir\+\_\+unsigned@{njson\+\_\+imprimir\+\_\+unsigned}}
+\index{njson\+\_\+imprimir\+\_\+unsigned@{njson\+\_\+imprimir\+\_\+unsigned}!N\+Json.\+c@{N\+Json.\+c}}
+\subsubsection[{\texorpdfstring{njson\+\_\+imprimir\+\_\+unsigned(void $\ast$valor, F\+I\+L\+E $\ast$out, unsigned opcion)}{njson_imprimir_unsigned(void *valor, FILE *out, unsigned opcion)}}]{\setlength{\rightskip}{0pt plus 5cm}void njson\+\_\+imprimir\+\_\+unsigned (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{valor, }
+\item[{F\+I\+LE $\ast$}]{out, }
+\item[{unsigned}]{opcion}
+\end{DoxyParamCaption}
+)}\hypertarget{NJson_8c_ac1c5a25a64a7c0758da0d8258cf7a239}{}\label{NJson_8c_ac1c5a25a64a7c0758da0d8258cf7a239}
+
+
+Primitiva de impresión de un tipo de dato entero (sin signo) en formato válido Json. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em valor} & \\
+\hline
+{\em out} & \\
+\hline
+{\em opcion} & \\
+\hline
+\end{DoxyParams}
+\index{N\+Json.\+c@{N\+Json.\+c}!njson\+\_\+init@{njson\+\_\+init}}
+\index{njson\+\_\+init@{njson\+\_\+init}!N\+Json.\+c@{N\+Json.\+c}}
+\subsubsection[{\texorpdfstring{njson\+\_\+init(\+N\+Json $\ast$this, char $\ast$nombre, char $\ast$nombre\+Dato, void $\ast$valor, unsigned size\+Dato, unsigned long\+Array, void $\ast$($\ast$func)(void $\ast$, F\+I\+L\+E $\ast$, unsigned))}{njson_init(NJson *this, char *nombre, char *nombreDato, void *valor, unsigned sizeDato, unsigned longArray, void *(*func)(void *, FILE *, unsigned))}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf N\+Json}$\ast$ njson\+\_\+init (
+\begin{DoxyParamCaption}
+\item[{{\bf N\+Json} $\ast$}]{this, }
+\item[{char $\ast$}]{nombre, }
+\item[{char $\ast$}]{nombre\+Dato, }
+\item[{void $\ast$}]{valor, }
+\item[{unsigned}]{size\+Dato, }
+\item[{unsigned}]{long\+Array, }
+\item[{void $\ast$($\ast$)(void $\ast$, F\+I\+LE $\ast$, unsigned)}]{func}
+\end{DoxyParamCaption}
+)}\hypertarget{NJson_8c_ab7a71ddb00e25953c70a14c41a85e774}{}\label{NJson_8c_ab7a71ddb00e25953c70a14c41a85e774}
+
+
+Primitiva de inicializacion de la estructura njson. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em this} & \\
+\hline
+{\em nombre} & \\
+\hline
+{\em nombre\+Dato} & \\
+\hline
+{\em valor} & \\
+\hline
+{\em size\+Dato} & \\
+\hline
+{\em Array} & \\
+\hline
+{\em func} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+N\+Json$\ast$ 
+\end{DoxyReturn}
+\index{N\+Json.\+c@{N\+Json.\+c}!njson\+\_\+obtener\+\_\+dato@{njson\+\_\+obtener\+\_\+dato}}
+\index{njson\+\_\+obtener\+\_\+dato@{njson\+\_\+obtener\+\_\+dato}!N\+Json.\+c@{N\+Json.\+c}}
+\subsubsection[{\texorpdfstring{njson\+\_\+obtener\+\_\+dato(\+N\+Json $\ast$this, char $\ast$clave, Dato $\ast$$\ast$dato\+\_\+encontrado)}{njson_obtener_dato(NJson *this, char *clave, Dato **dato_encontrado)}}]{\setlength{\rightskip}{0pt plus 5cm}int njson\+\_\+obtener\+\_\+dato (
+\begin{DoxyParamCaption}
+\item[{{\bf N\+Json} $\ast$}]{this, }
+\item[{char $\ast$}]{clave, }
+\item[{{\bf Dato} $\ast$$\ast$}]{dato\+\_\+encontrado}
+\end{DoxyParamCaption}
+)}\hypertarget{NJson_8c_a63e23ef358aeb20a585d432b728e7ee8}{}\label{NJson_8c_a63e23ef358aeb20a585d432b728e7ee8}
+
+
+Primitiva del T\+DA njson para obtener el dato a partir de una clave dada, se guarda el dato en la variable dato\+\_\+encontrado. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em this} & \\
+\hline
+{\em clave} & \\
+\hline
+{\em dato\+\_\+encontrado} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 1 si encontro el dato, o 0 si la clave no se encontro en el json. 
+\end{DoxyReturn}
+\index{N\+Json.\+c@{N\+Json.\+c}!njson\+\_\+print@{njson\+\_\+print}}
+\index{njson\+\_\+print@{njson\+\_\+print}!N\+Json.\+c@{N\+Json.\+c}}
+\subsubsection[{\texorpdfstring{njson\+\_\+print(\+N\+Json $\ast$this, F\+I\+L\+E $\ast$out, unsigned opcion)}{njson_print(NJson *this, FILE *out, unsigned opcion)}}]{\setlength{\rightskip}{0pt plus 5cm}void njson\+\_\+print (
+\begin{DoxyParamCaption}
+\item[{{\bf N\+Json} $\ast$}]{this, }
+\item[{F\+I\+LE $\ast$}]{out, }
+\item[{unsigned}]{opcion}
+\end{DoxyParamCaption}
+)}\hypertarget{NJson_8c_a18a0e798e5edd81b5fce5132fcf70a5e}{}\label{NJson_8c_a18a0e798e5edd81b5fce5132fcf70a5e}
+
+
+Primitiva de impresion del njson. Imprime en consola el njson pasado como parametro si el parametro opcion es 0, sino lo imprime sobre el archivo pasado como parametro. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em this} & \\
+\hline
+{\em out} & \\
+\hline
+{\em opcion} & \\
+\hline
+\end{DoxyParams}
+\index{N\+Json.\+c@{N\+Json.\+c}!njson\+\_\+release@{njson\+\_\+release}}
+\index{njson\+\_\+release@{njson\+\_\+release}!N\+Json.\+c@{N\+Json.\+c}}
+\subsubsection[{\texorpdfstring{njson\+\_\+release(\+N\+Json $\ast$this)}{njson_release(NJson *this)}}]{\setlength{\rightskip}{0pt plus 5cm}void njson\+\_\+release (
+\begin{DoxyParamCaption}
+\item[{{\bf N\+Json} $\ast$}]{this}
+\end{DoxyParamCaption}
+)}\hypertarget{NJson_8c_a33aac23caf27101de13e2e8bed7220c0}{}\label{NJson_8c_a33aac23caf27101de13e2e8bed7220c0}
+
+
+Liberacion de la memoria alocada por el njson pasado como parámetro. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em this} & Puntero a el njson a liberar \\
+\hline
+\end{DoxyParams}
+\index{N\+Json.\+c@{N\+Json.\+c}!njson\+\_\+tofile@{njson\+\_\+tofile}}
+\index{njson\+\_\+tofile@{njson\+\_\+tofile}!N\+Json.\+c@{N\+Json.\+c}}
+\subsubsection[{\texorpdfstring{njson\+\_\+tofile(\+N\+Json $\ast$this, char $\ast$filename)}{njson_tofile(NJson *this, char *filename)}}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int njson\+\_\+tofile (
+\begin{DoxyParamCaption}
+\item[{{\bf N\+Json} $\ast$}]{this, }
+\item[{char $\ast$}]{filename}
+\end{DoxyParamCaption}
+)}\hypertarget{NJson_8c_a9a536d3589a348aad9c532f76aa24f45}{}\label{NJson_8c_a9a536d3589a348aad9c532f76aa24f45}
+
+
+Primitiva del T\+DA njson de impresion del contenido del njson en un archivo con nombre filename. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em this} & \\
+\hline
+{\em filename} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+unsigned int Retorna 1 si se pudo escribir en el archivo, o 0 si no se pudo. 
+\end{DoxyReturn}

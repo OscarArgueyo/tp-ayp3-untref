@@ -1,13 +1,19 @@
+/**
+ * @brief Archivo NJson.h con declaracion de los TDA y las firmas de las primitivas del Trabajo Práctico Final 
+ * 
+ * @file NJson.h
+ * @author Argueyo Oscar, Diaz Alan
+ * @date 2018-06-29
+ */
 #ifndef __NJSON_H__
 #define __NJSON_H__
 
-
 /**
- * Definiciones de los TDA de la soluciÃ³n
+ * Definiciones de los TDA de la solución
  **/
 
 /**
- * Definicion del TDA NJson
+ * @brief Definicion del TDA NJson
  **/
 typedef struct _nJson{
 	char* nombre;
@@ -16,8 +22,7 @@ typedef struct _nJson{
 
 
 /**
- *
- * Definicion del TDA Dato
+ * @brief Definicion del TDA Dato
  **/
 typedef struct _dato{
 	char* nombre;
@@ -83,67 +88,36 @@ Dato* njson_agregar_siguiente_dato(
 	void* (*func)(void*,FILE*,unsigned)
 );
 
-/**
- * Primitiva de impresion del njson
- *
- **/
+
 void njson_print(NJson* this, FILE* out, unsigned opcion);
 
-/**
- * Primitiva de guardado de la impresion del njson como string en un archivo destino
- */
+
 unsigned int njson_tofile(NJson* this , char* filename);
 
 
-/**
- * Primitiva de impresion del tipo de dato: Entero
- **/
 void njson_imprimir_entero(void* valor, FILE* out, unsigned opcion);
 
-/**
- * Primitiva de impresion del tipo de dato: Entero sin signo
- **/
+
 void njson_imprimir_unsigned(void* valor, FILE* out, unsigned opcion);
 
-/**
- * Primitiva de impresion del tipo de dato: Double
- **/
+
 void njson_imprimir_double(void* valor, FILE* out, unsigned opcion);
 
-/**
- * Primitiva de impresion del tipo de dato: Flotante
- **/
+
 void njson_imprimir_float(void* valor, FILE* out, unsigned opcion);
 
-/**
- * Primitiva de impresion del tipo de dato: String
- **/
+
 void njson_imprimir_string(void* valor, FILE* out, unsigned opcion);
 
-/**
- * Primitiva de impresion del tipo de dato: Boolean
- **/
+
 void njson_imprimir_boolean(void* valor, FILE* out, unsigned opcion);
 
 
-/**
- * Primitiva de impresion de arrays de datos
- **/
 void njson_imprimir_array(Dato* dato, FILE* out, unsigned opcion);
 
 
-/**
-Primitivas de la entrega 3
-*/
-
-/**
-Obtenemos el dato de un njson a partir de la clave
-*/
 int njson_obtener_dato(NJson* this, char* clave, Dato** dato);
 
-/**
-Cambiamos el contenido de un elemento del njson a partir de la clave
-*/
 void njson_cambiar_contenido(
     NJson* this,
 	char* nombre,
@@ -153,13 +127,8 @@ void njson_cambiar_contenido(
 	void* (*func)(void*,FILE*,unsigned)
 );
 
-/**
-Escribimos el dato del json en el archivo definido en out
-*/
+
 void njson_dato_escribir(Dato* dato, FILE* out, unsigned opcion);
 
-/**
- * Fin Primitivas del NJson
- */
 #endif // __NJSON_H__
 

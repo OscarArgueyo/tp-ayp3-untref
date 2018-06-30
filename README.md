@@ -3,4 +3,6 @@ TP Algoritmos y Programacion 3 UNTREF
 
 Entrega 1 - Finalizada
 
-Entrega 2 - Enviada
+Entrega 2 - Finalizada
+
+Entrega 3 - Enviada

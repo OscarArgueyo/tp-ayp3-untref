@@ -1,9 +1,22 @@
-#include <stdio.h>
+/**
+ * @brief Archivo main para la generacion de un JSON de prueba para testeo de los TDA creados. 
+ * 
+ * @file main.c
+ * @author your name
+ * @date 2018-06-30
+ */
 #include <string.h>
 #include <stdlib.h>
 #include "NJson.h"
 
 #define NAME_MAX 255 // Largo maximo para nombre de archivos en linux.
+
+/**
+ * @brief Metodo main de verificacion de creación del njson para imprimirlos por consola o guardar el json generado en un archivo, si se pasaron las opciones correctas.
+ * 
+ * @param argc 
+ * @param argv 
+ */
 void main(int argc, char* argv[]) {
 
 	NJson njson;

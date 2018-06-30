@@ -1,8 +1,27 @@
+/**
+ * @brief Archivo NJson.c con la implementación de primitivas y declaracion de los TDA del Trabajo Práctico Final 
+ * 
+ * @file NJson.c
+ * @author Argueyo Oscar, Diaz Alan
+ * @date 2018-06-29
+ */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "NJson.h"
 
+/**
+ * @brief Primitiva de inicializacion de la estructura njson
+ * 
+ * @param this 
+ * @param nombre
+ * @param nombreDato 
+ * @param valor 
+ * @param sizeDato 
+ * @param Array 
+ * @param func 
+ * @return NJson* 
+ */
 NJson* njson_init(
 	NJson* this,
 	char* nombre,
@@ -22,6 +41,11 @@ NJson* njson_init(
 
 }
 
+/**
+ * @brief Liberacion de la memoria alocada por el njson pasado como parámetro
+ * 
+ * @param this Puntero a el njson a liberar
+ */
 void njson_release(NJson* this){
 	if(this){
 		free(this->nombre);
@@ -36,7 +60,11 @@ void njson_release(NJson* this){
 	}
 
 }
-
+/**
+ * @brief Liberacion de la memoria alocada para un TDA Dato que componen al njson
+ * 
+ * @param this Puntero al dato que compone al njson
+ */
 void njson_dato_release(Dato* this){
 	if(this){
 		free(this->nombre);
@@ -53,6 +81,16 @@ void njson_dato_release(Dato* this){
 
 }
 
+/**
+ * @brief Primitiva que permite agregar un TDA Dato a la estructura del njson
+ * 
+ * @param this 
+ * @param nombre 
+ * @param valor 
+ * @param sizeDato 
+ * @param Array 
+ * @param func funcion de impresion del dato
+ */
 void njson_dato_agregar(
 	NJson* this,
 	char* nombre,
@@ -68,6 +106,17 @@ void njson_dato_agregar(
 
 }
 
+/**
+ * @brief Primitiva de agregacion de datos al njson si ya tiene datos, se agrega de manera consecutiva al ultimo dato ingresado
+ * 
+ * @param dato 
+ * @param nombre 
+ * @param valor 
+ * @param sizeDato 
+ * @param Array 
+ * @param func 
+ * @return Dato* 
+ */
 Dato* njson_agregar_siguiente_dato(
 	Dato* dato, 
 	char* nombre,
@@ -98,6 +147,14 @@ Dato* njson_agregar_siguiente_dato(
 
 }
 
+/**
+ * @brief Primitiva de impresion del njson. 
+ * Imprime en consola el njson pasado como parametro si el parametro opcion es 0, sino lo imprime sobre el archivo pasado como parametro
+ * 
+ * @param this 
+ * @param out 
+ * @param opcion 
+ */
 void njson_print(NJson* this, FILE* out, unsigned opcion){
 	if(opcion == 0){
 		printf("{\n");
@@ -124,6 +181,13 @@ void njson_print(NJson* this, FILE* out, unsigned opcion){
 	}
 }
 
+/**
+ * @brief Primitiva de impresión de un tipo de dato entero (con signo) en formato válido Json
+ * 
+ * @param valor 
+ * @param out 
+ * @param opcion 
+ */
 void njson_imprimir_entero(void* valor, FILE* out, unsigned opcion){
 	if(opcion == 0){
 		printf("%d",*(int*)valor);
@@ -133,6 +197,13 @@ void njson_imprimir_entero(void* valor, FILE* out, unsigned opcion){
 
 }
 
+/**
+ * @brief Primitiva de impresión de un tipo de dato entero (sin signo) en formato válido Json
+ * 
+ * @param valor 
+ * @param out 
+ * @param opcion 
+ */
 void njson_imprimir_unsigned(void* valor, FILE* out, unsigned opcion){
 	if(opcion == 0){
 		printf("%u",*(unsigned*)valor);
@@ -142,6 +213,13 @@ void njson_imprimir_unsigned(void* valor, FILE* out, unsigned opcion){
 
 }
 
+/**
+ * @brief Primitiva de impresión de un tipo de dato double en formato válido Json
+ * 
+ * @param valor 
+ * @param out 
+ * @param opcion 
+ */
 void njson_imprimir_double(void* valor, FILE* out, unsigned opcion){
 	if(opcion == 0){
 		printf("%lf",*(double*)valor);
@@ -150,6 +228,13 @@ void njson_imprimir_double(void* valor, FILE* out, unsigned opcion){
 	}
 }
 
+/**
+ * @brief Primitiva de impresión de un tipo de dato entero float en formato válido Json 
+ * 
+ * @param valor 
+ * @param out 
+ * @param opcion 
+ */
 void njson_imprimir_float(void* valor, FILE* out, unsigned opcion){
 	if(opcion == 0){
 		printf("%f",*(float*)valor);
@@ -158,6 +243,13 @@ void njson_imprimir_float(void* valor, FILE* out, unsigned opcion){
 	}
 }
 
+/**
+ * @brief Primitiva de impresión de un tipo de dato string en formato válido Json
+ * 
+ * @param valor 
+ * @param out 
+ * @param opcion 
+ */
 void njson_imprimir_string(void* valor, FILE* out, unsigned opcion){
 	if(opcion == 0){
 		printf("\"%s\"",(char*)valor);
@@ -167,6 +259,13 @@ void njson_imprimir_string(void* valor, FILE* out, unsigned opcion){
 
 }
 
+/**
+ * @brief Primitiva de impresión de un tipo de dato Boolean en formato válido Json: true o false
+ * 
+ * @param valor 
+ * @param out 
+ * @param opcion 
+ */
 void njson_imprimir_boolean(void* valor, FILE* out, unsigned opcion){
 	char bool = *(char*)valor;
 	if(opcion == 0){
@@ -185,6 +284,13 @@ void njson_imprimir_boolean(void* valor, FILE* out, unsigned opcion){
 
 }
 
+/**
+ * @brief Primitiva del TDA njson de impresion del contenido del njson en un archivo con nombre filename
+ * 
+ * @param this 
+ * @param filename 
+ * @return unsigned int Retorna 1 si se pudo escribir en el archivo, o 0 si no se pudo.
+ */
 unsigned int njson_tofile(NJson* this , char* filename){
 
 	FILE* out;
@@ -193,29 +299,22 @@ unsigned int njson_tofile(NJson* this , char* filename){
 		njson_print(this,out,1);
 	}
 
-	fclose(out);
-
-	/*
-	FILE *out;
-
-	if((out=freopen((char*)filename, "w" ,stdout))==NULL) {
-	    printf("No pudo abrirse correctamente el archivo.\n");
-    	exit(1);
-    	return 0;
-  	}
-	njson_print(this);
 	if	(fclose(out) == EOF){
 		return 0;
 	}
-	*/
 	return 1;
 
 }
 
-/**
-Primitivas de la entrega 3
-*/
 
+/**
+ * @brief Primitiva del TDA njson para obtener el dato a partir de una clave dada, se guarda el dato en la variable dato_encontrado
+ * 
+ * @param this 
+ * @param clave 
+ * @param dato_encontrado 
+ * @return int 1 si encontro el dato, o 0 si la clave no se encontro en el json.
+ */
 int njson_obtener_dato(NJson* this, char* clave , Dato** dato_encontrado){
 
 	Dato* dato = this->dato;
@@ -231,6 +330,16 @@ int njson_obtener_dato(NJson* this, char* clave , Dato** dato_encontrado){
 	return encontrado;
 }
 
+/**
+ * @brief Primitiva del TDA njson para cambiar el contenido (valor) de un elemento del nsjon, a partir de una clave dada valida
+ * 
+ * @param this 
+ * @param nombre 
+ * @param valor 
+ * @param sizeDato 
+ * @param Array 
+ * @param func 
+ */
 void njson_cambiar_contenido(
     NJson* this,
 	char* nombre,
@@ -255,6 +364,14 @@ void njson_cambiar_contenido(
 
 }
 
+/**
+ * @brief Primitiva del nsjon para imprimir los datos que lo componen, se invoca la funcion de impresion de cada dato o si es un array de datos 
+ * se itera sobre estos aplicando la funcion de impresion para cada elemento del arreglo.
+ * 
+ * @param dato 
+ * @param out 
+ * @param opcion 
+ */
 void njson_dato_escribir(Dato* dato, FILE* out, unsigned opcion){
 	if(opcion == 0){
 		printf("\t\"");
@@ -277,7 +394,13 @@ void njson_dato_escribir(Dato* dato, FILE* out, unsigned opcion){
 	}
 
 }
-
+/**
+ * @brief Primitiva del nsjon para la impresion de coleccion de un mismo tipo de dato
+ * 
+ * @param dato 
+ * @param out 
+ * @param opcion 
+ */
 void njson_imprimir_array(Dato* dato, FILE* out, unsigned opcion){
 	if(opcion == 0){
 		printf("[");

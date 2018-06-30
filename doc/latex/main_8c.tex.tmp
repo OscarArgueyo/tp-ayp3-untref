@@ -1,0 +1,59 @@
+\hypertarget{main_8c}{}\section{main.\+c File Reference}
+\label{main_8c}\index{main.\+c@{main.\+c}}
+
+
+Archivo main para la generacion de un J\+S\+ON de prueba para testeo de los T\+DA creados.  
+
+
+{\ttfamily \#include $<$string.\+h$>$}\\*
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}N\+Json.\+h\char`\"{}}\\*
+Include dependency graph for main.\+c\+:
+% FIG 0
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries N\+A\+M\+E\+\_\+\+M\+AX}~255\hypertarget{main_8c_ac64541bdd81c961304b9babef1402640}{}\label{main_8c_ac64541bdd81c961304b9babef1402640}
+
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{main_8c_a91a3bbcc7eb26e8695255b2795d6e46f}{main} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Metodo main de verificacion de creación del njson para imprimirlos por consola o guardar el json generado en un archivo, si se pasaron las opciones correctas. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Archivo main para la generacion de un J\+S\+ON de prueba para testeo de los T\+DA creados. 
+
+\begin{DoxyAuthor}{Author}
+your name 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2018-\/06-\/30 
+\end{DoxyDate}
+
+
+\subsection{Function Documentation}
+\index{main.\+c@{main.\+c}!main@{main}}
+\index{main@{main}!main.\+c@{main.\+c}}
+\subsubsection[{\texorpdfstring{main(int argc, char $\ast$argv[])}{main(int argc, char *argv[])}}]{\setlength{\rightskip}{0pt plus 5cm}void main (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)}\hypertarget{main_8c_a91a3bbcc7eb26e8695255b2795d6e46f}{}\label{main_8c_a91a3bbcc7eb26e8695255b2795d6e46f}
+
+
+Metodo main de verificacion de creación del njson para imprimirlos por consola o guardar el json generado en un archivo, si se pasaron las opciones correctas. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & \\
+\hline
+{\em argv} & \\
+\hline
+\end{DoxyParams}
+Declaracion del puntero al nombre del archivo si lo necesitamos segun opciones de ejecucion
+
+Declaracion de variables a guardarse en el json para probar el funcionamiento
